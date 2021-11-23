@@ -15,28 +15,16 @@ session_start();
 		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
 		{
 
-			//read from database
-			$query = "select * from utilisateur where user_name = '$user_name' limit 1";
-			$result = mysqli_query($con, $query);
+            $query = "select * from utilisateur where user_name = '$user_name' limit 1";
+			$result = $con->executeQuery($query);
+            $query2 = "select password from utilisateur where user_name = '$user_name' limit 1";
 
-			if($result)
-			{
-				if($result && mysqli_num_rows($result) > 0)
-				{
-
-					$user_data = mysqli_fetch_assoc($result);
-					
-					if($user_data['password'] === $password)
-					{
-
-						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: index.php");
-						die;
-					}
-				}
-			}
-			
-			echo "wrong username or password!";
+			if($result) {
+                if ($query2 === $password) {
+                    http_redirect("index.php");
+                    die;
+                }
+            }
 		}else
 		{
 			echo "wrong username or password!";

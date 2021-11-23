@@ -36,8 +36,11 @@
         <tbody>
         <?php
         require('connection.php');
-        $query = $connection->query("SELECT * FROM `tache`");
-        while($fetch = $query->fetch_array()){
+        $query4 = "SELECT * FROM `tache`";
+        $result = $con->executeQuery($query4);
+        $results=$con->getResults();
+
+        Foreach ($results as $fetch){
             ?>
             <tr>
                 <td>

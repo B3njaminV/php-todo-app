@@ -4,7 +4,8 @@ require('connection.php');
 if($_GET['id'] != ""){
     $id = $_GET['id'];
 
-    $connection->query("UPDATE `tache` SET `status` = 'OK' WHERE `id` = $id") or die(mysqli_errno());
+    $query3 = "UPDATE `tache` SET `status` = 'OK' WHERE `id` = $id";
+    $result = $con->executeQuery($query3);
     header('location: page.php');
 }
 ?>
