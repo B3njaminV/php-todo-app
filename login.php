@@ -12,19 +12,20 @@ session_start();
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
 
+
 		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
 		{
 
             $query = "select * from utilisateur where user_name = '$user_name' limit 1";
-			$result = $con->executeQuery($query);
-            $query2 = "select password from utilisateur where user_name = '$user_name' limit 1";
+			$con->executeQuery($query);
+            $result=$con->getResults();
 
 			if($result) {
-                if ($query2 === $password) {
-                    http_redirect("index.php");
-                    die;
+                if ($result[0]['password'] == $password) {
                 }
-            }
+                    header("location:page.php");
+                    die;
+             }
 		}else
 		{
 			echo "wrong username or password!";
@@ -32,7 +33,6 @@ session_start();
 	}
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -80,8 +80,6 @@ session_start();
 			<input id="text" type="password" name="password"><br><br>
 
 			<input id="button" type="submit" value="Login"><br><br>
-
-			<a href="signup.php">Click to Signup</a><br><br>
 		</form>
 	</div>
 </body>
