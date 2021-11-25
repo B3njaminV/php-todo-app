@@ -12,64 +12,92 @@
         </div>
     </center>
 </nav>
-<div class="col-md-3"></div>
-<div class="col-md-6 well">
-    <h3 class="text-primary">To Do</h3>
-    <hr style="border-top:1px dotted #ccc;"/>
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <center>
-            <form method="POST" class="form-inline" action="ajout_tache.php">
-                <input type="text" class="form-control" name="texte" required/>
-                <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
-            </form>
-        </center>
-    </div>
-    <br /><br /><br />
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Tache</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        require('connection.php');
-        $query4 = "SELECT * FROM `tache`";
-        $result = $con->executeQuery($query4);
-        $results=$con->getResults();
 
-        Foreach ($results as $fetch){
-            ?>
-            <tr>
-                <td>
-                <?php
-                if($fetch['status'] == "OK"){
-                    echo
-                       '<strike>'.$fetch['texte'].'</strike>';
-                }else{
-                    echo $fetch['texte'];
-                }
-                ?>
-                </td>
-                <td colspan="2">
-                    <center>
-                        <?php
-                        if($fetch['status'] != "OK"){
-                            echo
-                                '<a href="check.php?id='.$fetch['id'].'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
-                        }
-                        ?>
-                        <a href="supprimer_tache.php?id=<?php echo $fetch['id']?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
-                    </center>
-                </td>
-            </tr>
+<center>
+    <form method="POST" class="form-inline" action="ajout_liste.php">
+        <input type="text" class="form-control" name="titre" required/>
+        <button class="btn btn-primary form-control" name="add">Ajouter Liste</button>
+    </form>
+</center>
+<div class="col-md-4"></div>
+<br/><br/><br/>
+<div class="col-md-4"></div>
+
+<?php
+require('connection.php');
+$query5 = "SELECT * FROM `liste` WHERE status='prive'";
+$results = $con->executeQuery($query5);
+$resultss=$con->getResults();
+
+Foreach ($resultss as $fetch){
+?>
+    <div class="col-md-6 well">
+        <h3 class="text-primary">
             <?php
-        }
-        ?>
-        </tbody>
-    </table>
-</div>
+                echo $fetch['titre'];
+            ?>
+            <a href="supprimer_liste.php?id=<?php echo $fetch['id']?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </h3>
+        <hr style="border-top:1px dotted #ccc;"/>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <center>
+                <form method="POST" class="form-inline" action="ajout_tache.php">
+                    <input type="text" class="form-control" name="texte" required/>
+                    <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
+                </form>
+            </center>
+        </div>
+        <br /><br /><br />
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Tache</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+
+            $query4 = "SELECT * FROM tache WHERE idParent IS NULL";
+            $result = $con->executeQuery($query4);
+            $results=$con->getResults();
+
+            Foreach ($results as $fetch){
+                ?>
+                <tr>
+                    <td>
+                    <?php
+                    if($fetch['status'] == "OK"){
+                        echo
+                           '<strike>'.$fetch['texte'].'</strike>';
+                    }else{
+                        echo $fetch['texte'];
+                    }
+                    ?>
+                    </td>
+                    <td colspan="2">
+                        <center>
+                            <?php
+                            if($fetch['status'] != "OK"){
+                                echo
+                                    '<a href="check.php?id='.$fetch['id'].'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
+                            }
+                            ?>
+                            <a href="supprimer_tache.php?id=<?php echo $fetch['id']?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        </center>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4"></div>
+<?php
+}
+?>
+
 </body>
 </html>
