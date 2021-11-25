@@ -1,10 +1,6 @@
 <?php 
 
-session_start();
-
 	include("connection.php");
-	include("functions.php");
-
 
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
@@ -22,13 +18,15 @@ session_start();
 
 			if($result) {
                 if ($result[0]['password'] == $password) {
-                }
                     header("location:page.php");
                     die;
+                }else{
+                    echo "WRONG PASSWORD !";
+                }
              }
 		}else
 		{
-			echo "wrong username or password!";
+            echo "WRONG PASSWORD !";
 		}
 	}
 
@@ -76,10 +74,10 @@ session_start();
 		<form method="post">
 			<div style="font-size: 20px;margin: 10px;color: white;">Login</div>
 
-			<input id="text" type="text" name="user_name"><br><br>
-			<input id="text" type="password" name="password"><br><br>
+			<input id="text" type="text" name="user_name" placeholder="Pseudo"><br><br>
+			<input id="text" type="password" name="password" placeholder="Password"><br><br>
 
-			<input id="button" type="submit" value="Login"><br><br>
+            <input id="button" type="submit" value="Login"><br><br>
 		</form>
 	</div>
 </body>
