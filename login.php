@@ -1,10 +1,11 @@
 <?php 
 
-	include("connection.php");
+	require("metier/connection.php");
+    require("controleur/UtilisateurGateway.php");
+    require("metier/Utilisateur.php");
 
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
-		//something was posted
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
 
@@ -12,12 +13,11 @@
 		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
 		{
 
-            $query = "select * from utilisateur where user_name = '$user_name' limit 1";
-			$con->executeQuery($query);
-            $result=$con->getResults();
+            $gateway=new UtilisateurGateway($con);
+            $result=$gateway->findOneUser($user_name);
 
 			if($result) {
-                if ($result[0]['password'] == $password) {
+                if ($result->getPassword() == $password) {
                     header("location:page.php");
                     die;
                 }else{
@@ -35,7 +35,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Connection</title>
 </head>
 <body>
 
@@ -72,11 +72,10 @@
 	<div id="box">
 		
 		<form method="post">
-			<div style="font-size: 20px;margin: 10px;color: white;">Login</div>
+			<div style="font-size: 20px;margin: 10px;color: white;">Connexion</div>
 
 			<input id="text" type="text" name="user_name" placeholder="Pseudo"><br><br>
-			<input id="text" type="password" name="password" placeholder="Password"><br><br>
-
+			<input id="text" type="password" name="password" placeholder="Mot de Passe"<br><br><br><br>
             <input id="button" type="submit" value="Login"><br><br>
 		</form>
 	</div>

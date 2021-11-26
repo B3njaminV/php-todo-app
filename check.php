@@ -1,11 +1,12 @@
 <?php
-require('connection.php');
+require('metier/connection.php');
+require("controleur/TacheGateway.php");
+require("metier/Tache.php");
 
 if($_GET['id'] != ""){
     $id = $_GET['id'];
-
-    $query3 = "UPDATE `tache` SET `status` = 'OK' WHERE `id` = $id";
-    $result = $con->executeQuery($query3);
+    $gateway=new TacheGateway($con);
+    $gateway->checkTask($id);
     header('location: page.php');
 }
 ?>

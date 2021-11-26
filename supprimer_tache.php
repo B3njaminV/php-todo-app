@@ -1,9 +1,12 @@
 <?php
-require('connection.php');
+require('metier/connection.php');
+require("controleur/TacheGateway.php");
+require("metier/Tache.php");
+
 if($_GET['id']){
     $id = $_GET['id'];
-    $query = "DELETE FROM `tache` WHERE `id` = $id";
-    $con->executeQuery($query);
+    $gateway=new TacheGateway($con);
+    $gateway->delTask($id);
     header("location: page.php");
 }
 ?>
