@@ -10,25 +10,16 @@
         <div class="container-fluid">
             <a class="navbar-brand">PROJET</a>
             <div class="tab">
-                <button class="tablinks" onclick="AffList(event, 'Prive')" id="defaultOpen">Privé</button>
-                <button class="tablinks" onclick="AffList(event, 'Public')" id="defaultOpen">Public</button>
+                <button class="tablinks" onclick="AffList(event, 'Public')" id="defaultOpen">Privé</button>
+                <button class="tablinks" onclick="AffList(event, 'Prive')">Public</button>
             </div>
         </div>
 
     </center>
 </nav>
 
-<center>
-    <form method="POST" class="form-inline" action="ajout_liste.php">
-        <input type="text" class="form-control" name="titre" required/>
-        <button class="btn btn-primary form-control" name="add">Ajouter Liste</button>
-    </form>
-</center>
-<div class="col-md-4"></div>
-<br/><br/><br/>
-<div class="col-md-4"></div>
-
 <div id="Prive" class="tabcontent">
+
     <div class="col-md-4"></div>
     <?php
     require('metier/Connection.php');
@@ -37,7 +28,7 @@
     require("controleur/ListeGateway.php");
     require("metier/Liste.php");
     $gateway1=new ListeGateway($con);
-    $tabListe=$gateway1->findAllPrivateList();
+    $tabListe=$gateway1->findAllPublicList();
 
     Foreach ($tabListe as $l){
         ?>
@@ -53,6 +44,7 @@
             <div class="col-md-8">
                 <center>
                     <form method="POST" class="form-inline" action="ajout_tache.php">
+                        <input type="hidden" name="idListe" value="<?php echo $l->getId()?>">
                         <input type="text" class="form-control" name="texte" required/>
                         <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
                     </form>
@@ -69,7 +61,7 @@
                 <tbody>
                 <?php
                 $gateway=new TacheGateway($con);
-                $tabTache=$gateway->findAllTask();
+                $tabTache=$gateway->findAllTask($l->getId());
 
                 Foreach ($tabTache as $t){
                     ?>
@@ -109,7 +101,87 @@
 </div>
 
 <div id="Public" class="tabcontent">
+    <center>
+        <form method="POST" class="form-inline" action="ajout_liste.php">
+            <input type="text" class="form-control" name="titre" required/>
+            <button class="btn btn-primary form-control" name="add">Ajouter Liste Prive</button>
+        </form>
+    </center>
+    <div class="col-md-4"></div>
+    <br/><br/><br/>
+    <div class="col-md-4"></div>
+    <?php
+    $gateway2=new ListeGateway($con);
+    $tabListe1=$gateway2->findAllPrivateList();
 
+    Foreach ($tabListe1 as $l1){
+        ?>
+        <div class="col-md-6 well">
+            <h3 class="text-primary">
+                <?php
+                echo $l1->getTitre();
+                ?>
+                <a href="supprimer_liste.php?id=<?php echo $l1->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+            </h3>
+            <hr style="border-top:1px dotted #ccc;"/>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <center>
+                    <form method="POST" class="form-inline" action="ajout_tache.php">
+                        <input type="hidden" name="idListe" value="<?php echo $l1->getId()?>">
+                        <input type="text" class="form-control" name="texte" required/>
+                        <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
+                    </form>
+                </center>
+            </div>
+            <br /><br /><br />
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Tache</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $gateway4=new TacheGateway($con);
+                $tabTache=$gateway4->findAllTask($l1->getId());
+
+                Foreach ($tabTache as $t1){
+                    ?>
+                    <tr>
+                        <td>
+                            <?php
+                            if($t1->getStatus() == "OK"){
+                                echo
+                                    '<strike>'.$t1->getTexte().'</strike>';
+                            }else{
+                                echo $t1->getTexte();
+                            }
+                            ?>
+                        </td>
+                        <td colspan="2">
+                            <center>
+                                <?php
+                                if($t1->getStatus() != "OK"){
+                                    echo
+                                        '<a href="check.php?id='.$t1->getId().'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
+                                }
+                                ?>
+                                <a href="supprimer_tache.php?id=<?php echo $t1->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            </center>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4"></div>
+        <?php
+    }
+    ?>
 </div>
 
 

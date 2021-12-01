@@ -6,8 +6,9 @@ require("metier/Tache.php");
 if(ISSET($_POST['add'])){
     if($_POST['texte'] != ""){
         $texte = $_POST['texte'];
+        $idListeParent = $_POST['idListe'];
         $gateway=new TacheGateway($con);
-        $gateway->addTask($texte);
+        $gateway->addTask($texte, $idListeParent);
         header('location:pagemembre.php');
     }
 }

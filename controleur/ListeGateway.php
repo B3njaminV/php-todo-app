@@ -18,6 +18,17 @@ class ListeGateway
         return $this->tabListe;
     }
 
+    public function findAllPublicList(){
+        $query = "SELECT * FROM liste WHERE status='public'";
+        $this->con->executeQuery($query);
+        $results=$this->con->getResults();
+
+        Foreach ($results as $fetch){
+            $this->tabListe[]=new Liste($fetch['id'], $fetch['titre'], $fetch['status']);
+        }
+        return $this->tabListe;
+    }
+
     public function delList($id){
         $query = "DELETE FROM `liste` WHERE `id` = $id";
         $this->con->executeQuery($query);

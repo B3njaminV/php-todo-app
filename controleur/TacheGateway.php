@@ -7,8 +7,8 @@ class TacheGateway
         $this->con=$con;
     }
 
-    public function findAllTask(){
-        $query = "SELECT * FROM tache";
+    public function findAllTask($id){
+        $query = "SELECT * FROM tache WHERE idParent='$id'";
         $this->con->executeQuery($query);
         $results=$this->con->getResults();
 
@@ -16,7 +16,6 @@ class TacheGateway
             $this->tabTaches[]=new Tache($fetch['id'], $fetch['texte'], $fetch['status'], $fetch['idParent']);
         }
         return $this->tabTaches;
-
     }
 
     public function delTask($id){
@@ -29,8 +28,8 @@ class TacheGateway
         $this->con->executeQuery($query);
     }
 
-    public function addTask($texte){
-        $query = "INSERT INTO `tache`(`texte`, `status`) VALUES('$texte', 'NON')";
+    public function addTask($texte, $idParent){
+        $query = "INSERT INTO `tache`(`texte`, `status`,`idParent`) VALUES('$texte', 'NON', '$idParent')";
         $this->con->executeQuery($query);
     }
 }
