@@ -32,6 +32,7 @@ try{
 }
 catch( PDOException $Exception ) {
     echo 'ERREUR DE CONNEXION A LA BDD !';
-    echo $Exception->getMessage();}
+    echo $Exception->getMessage();
+}
 
 ?>
