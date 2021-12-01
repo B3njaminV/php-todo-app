@@ -1,5 +1,5 @@
 <?php
-class Connection extends PDO {
+class connection extends PDO {
 
     private $stmt;
 
@@ -25,10 +25,10 @@ class Connection extends PDO {
 }
 
 $user= 'root';
-$pass='root';
+$pass='';
 $dsn='mysql:host=localhost;dbname=bdd';
 try{
-    $con=new Connection($dsn,$user,$pass);
+    $con=new connection($dsn,$user,$pass);
 }
 catch( PDOException $Exception ) {
     echo 'ERREUR DE CONNEXION A LA BDD !';
