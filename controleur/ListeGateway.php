@@ -16,7 +16,6 @@ class ListeGateway
             $this->tabListe[]=new Liste($fetch['id'], $fetch['titre'], $fetch['status']);
         }
         return $this->tabListe;
-
     }
 
     public function delList($id){

@@ -1,5 +1,5 @@
 <?php
-require('metier/connection.php');
+require('metier/Connection.php');
 require("controleur/ListeGateway.php");
 require("metier/Liste.php");
 
@@ -8,7 +8,7 @@ if(ISSET($_POST['add'])){
         $titre = $_POST['titre'];
         $gateway=new ListeGateway($con);
         $gateway->addPrivateList($titre);
-        header('location:page.php');
+        header('location:pagemembre.php');
     }
 }
 ?>

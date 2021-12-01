@@ -23,5 +23,5 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `password` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `utilisateur`VALUES(1234,"benjamin","root");
-INSERT INTO `utilisateur`VALUES(12345,"vincent","root");
+INSERT INTO `utilisateur`VALUES(1234,"benjamin",MD5("root"));
+INSERT INTO `utilisateur`VALUES(12345,"vincent",MD5("root");

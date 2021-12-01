@@ -1,5 +1,5 @@
 <?php
-require('metier/connection.php');
+require('metier/Connection.php');
 require("controleur/TacheGateway.php");
 require("metier/Tache.php");
 
@@ -8,7 +8,7 @@ if(ISSET($_POST['add'])){
         $texte = $_POST['texte'];
         $gateway=new TacheGateway($con);
         $gateway->addTask($texte);
-        header('location:page.php');
+        header('location:pagemembre.php');
     }
 }
 ?>

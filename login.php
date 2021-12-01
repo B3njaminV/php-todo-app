@@ -1,6 +1,6 @@
 <?php 
 
-	require("metier/connection.php");
+	require("metier/Connection.php");
     require("controleur/UtilisateurGateway.php");
     require("metier/Utilisateur.php");
 
@@ -17,8 +17,8 @@
             $result=$gateway->findOneUser($user_name);
 
 			if($result) {
-                if ($result->getPassword() == $password) {
-                    header("location:page.php");
+                if ($result->getPassword() == md5($password)) {
+                    header("location:pagemembre.php");
                     die;
                 }else{
                     echo "WRONG PASSWORD !";
@@ -76,7 +76,8 @@
 
 			<input id="text" type="text" name="user_name" placeholder="Pseudo"><br><br>
 			<input id="text" type="password" name="password" placeholder="Mot de Passe"<br><br><br><br>
-            <input id="button" type="submit" value="Login"><br><br>
+            <input id="button" type="submit" value="Login">
+            <input id="button" type="submit" value="Simple visiteur">
 		</form>
 	</div>
 </body>
