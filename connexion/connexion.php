@@ -18,7 +18,7 @@
 
 			if($result) {
                 if ($result->getPassword() == md5($password)) {
-                    header("location:pagemembre.php");
+                    header("location:vue/pagemembre.php");
                     die;
                 }else{
                     echo "WRONG PASSWORD !";
@@ -32,7 +32,7 @@
 
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
     {
-        header("location:pagevisiteur.php");
+        header("location:vue/pagevisiteur.php");
         die;
     }
 ?>

@@ -1,7 +1,7 @@
 <?php
-require('metier/Connection.php');
-require("gateway/TacheGateway.php");
-require("metier/Tache.php");
+require('../metier/Connection.php');
+require("../gateway/TacheGateway.php");
+require("../metier/Tache.php");
 
 if(ISSET($_POST['add'])){
     if($_POST['texte'] != ""){
@@ -9,7 +9,7 @@ if(ISSET($_POST['add'])){
         $idListeParent = $_POST['idListe'];
         $gateway=new TacheGateway($con);
         $gateway->addTask($texte, $idListeParent);
-        header('location:pagevisiteur.php');
+        header('location:../vue/pagevisiteur.php');
     }
 }
 ?>

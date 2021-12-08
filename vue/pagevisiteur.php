@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <a class="navbar-brand">PROJET</a>
             <?php
-            include("connexion/deconnexion.php")
+            include("../connexion/deconnexion.php")
             ?>
             <form method="post">
                 <div class="tab">
@@ -23,7 +23,7 @@
 </nav>
 
 <center>
-    <form method="POST" class="form-inline" action="action/ajout_liste_public.php">
+    <form method="POST" class="form-inline" action="../action/ajout_liste_public.php">
         <input type="text" class="form-control" name="titre" required/>
         <button class="btn btn-primary form-control" name="add">Ajouter Liste</button>
     </form>
@@ -32,11 +32,11 @@
 <br/><br/><br/>
 <div class="col-md-4"></div>
 <?php
-require('metier/Connection.php');
-require("gateway/TacheGateway.php");
-require("metier/Tache.php");
-require("gateway/ListeGateway.php");
-require("metier/Liste.php");
+require('../metier/Connection.php');
+require("../gateway/TacheGateway.php");
+require("../metier/Tache.php");
+require("../gateway/ListeGateway.php");
+require("../metier/Liste.php");
 $gateway10 = new ListeGateway($con);
 $tabListe = $gateway10->findAllPublicList();
 
@@ -47,14 +47,14 @@ foreach ($tabListe as $l) {
             <?php
             echo $l->getTitre();
             ?>
-            <a href="action/supprimer_liste_public.php?id=<?php echo $l->getId() ?>" class="btn btn-danger"><span
+            <a href="../action/supprimer_liste_public.php?id=<?php echo $l->getId() ?>" class="btn btn-danger"><span
                         class="glyphicon glyphicon-remove"></span></a>
         </h3>
         <hr style="border-top:1px dotted #ccc;"/>
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <center>
-                <form method="POST" class="form-inline" action="action/ajout_tache_public.php">
+                <form method="POST" class="form-inline" action="../action/ajout_tache_public.php">
                     <input type="hidden" name="idListe" value="<?php echo $l->getId()?>">
                     <input type="text" class="form-control" name="texte" required/>
                     <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
@@ -92,10 +92,10 @@ foreach ($tabListe as $l) {
                             <?php
                             if ($t->getStatus() != "OK") {
                                 echo
-                                    '<a href="check_public.php?id=' . $t->getId() . '" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
+                                    '<a href="../action/check_public.php?id=' . $t->getId() . '" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
                             }
                             ?>
-                            <a href="action/supprimer_tache_public.php?id=<?php echo $t->getId() ?>" class="btn btn-danger"><span
+                            <a href="../action/supprimer_tache_public.php?id=<?php echo $t->getId() ?>" class="btn btn-danger"><span
                                         class="glyphicon glyphicon-remove"></span></a>
                         </center>
                     </td>
