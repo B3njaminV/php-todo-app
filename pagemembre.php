@@ -31,9 +31,9 @@
     <div class="col-md-4"></div>
     <?php
     require('metier/Connection.php');
-    require("controleur/TacheGateway.php");
+    require("gateway/TacheGateway.php");
     require("metier/Tache.php");
-    require("controleur/ListeGateway.php");
+    require("gateway/ListeGateway.php");
     require("metier/Liste.php");
     $gateway1=new ListeGateway($con);
     $tabListe=$gateway1->findAllPublicList();

@@ -1,7 +1,7 @@
 <?php 
 
 	require("metier/Connection.php");
-    require("controleur/UtilisateurGateway.php");
+    require("gateway/UtilisateurGateway.php");
     require("metier/Utilisateur.php");
 
 	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['member']))

@@ -1,6 +1,6 @@
 <?php
 require('metier/Connection.php');
-require("controleur/ListeGateway.php");
+require("gateway/ListeGateway.php");
 require("metier/Liste.php");
 
 if($_GET['id']){
