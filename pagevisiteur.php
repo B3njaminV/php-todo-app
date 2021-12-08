@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <a class="navbar-brand">PROJET</a>
             <?php
-                include("deconnexion.php")
+            include("connexion/deconnexion.php")
             ?>
             <form method="post">
                 <div class="tab">
@@ -23,7 +23,7 @@
 </nav>
 
 <center>
-    <form method="POST" class="form-inline" action="ajout_liste_public.php">
+    <form method="POST" class="form-inline" action="action/ajout_liste_public.php">
         <input type="text" class="form-control" name="titre" required/>
         <button class="btn btn-primary form-control" name="add">Ajouter Liste</button>
     </form>
@@ -47,14 +47,14 @@ foreach ($tabListe as $l) {
             <?php
             echo $l->getTitre();
             ?>
-            <a href="supprimer_liste_public.php?id=<?php echo $l->getId() ?>" class="btn btn-danger"><span
+            <a href="action/supprimer_liste_public.php?id=<?php echo $l->getId() ?>" class="btn btn-danger"><span
                         class="glyphicon glyphicon-remove"></span></a>
         </h3>
         <hr style="border-top:1px dotted #ccc;"/>
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <center>
-                <form method="POST" class="form-inline" action="ajout_tache_public.php">
+                <form method="POST" class="form-inline" action="action/ajout_tache_public.php">
                     <input type="hidden" name="idListe" value="<?php echo $l->getId()?>">
                     <input type="text" class="form-control" name="texte" required/>
                     <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
@@ -95,7 +95,7 @@ foreach ($tabListe as $l) {
                                     '<a href="check_public.php?id=' . $t->getId() . '" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
                             }
                             ?>
-                            <a href="supprimer_tache_public.php?id=<?php echo $t->getId() ?>" class="btn btn-danger"><span
+                            <a href="action/supprimer_tache_public.php?id=<?php echo $t->getId() ?>" class="btn btn-danger"><span
                                         class="glyphicon glyphicon-remove"></span></a>
                         </center>
                     </td>
