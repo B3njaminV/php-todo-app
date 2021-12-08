@@ -24,4 +24,4 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `utilisateur`VALUES(1234,"benjamin",MD5("root"));
-INSERT INTO `utilisateur`VALUES(12345,"vincent",MD5("root");
+INSERT INTO `utilisateur`VALUES(12345,"vincent",MD5("root"));

@@ -24,9 +24,9 @@ class ListeGateway
         $results=$this->con->getResults();
 
         Foreach ($results as $fetch){
-            $this->tabListe[]=new Liste($fetch['id'], $fetch['titre'], $fetch['status']);
+            $this->tabListesss[]=new Liste($fetch['id'], $fetch['titre'], $fetch['status']);
         }
-        return $this->tabListe;
+        return $this->tabListesss;
     }
 
     public function delList($id){

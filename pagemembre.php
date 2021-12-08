@@ -8,6 +8,14 @@
 <nav class="navbar navbar-default">
     <center>
         <div class="container-fluid">
+            <?php
+            include("deconnexion.php")
+            ?>
+            <form method="post">
+                <div class="tab" width="15px">
+                    <button id="button" name="deco" class="tablinks" type="submit">Déconnexion</button>
+                </div>
+            </form>
             <a class="navbar-brand">PROJET</a>
             <div class="tab">
                 <button class="tablinks" onclick="AffList(event, 'Public')" id="defaultOpen">Privé</button>
@@ -37,13 +45,14 @@
                 <?php
                 echo $l->getTitre();
                 ?>
-                <a href="supprimer_liste.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+
+                <a href="supprimer_liste_prive.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
             </h3>
             <hr style="border-top:1px dotted #ccc;"/>
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <center>
-                    <form method="POST" class="form-inline" action="ajout_tache.php">
+                    <form method="POST" class="form-inline" action="ajout_tache_prive.php">
                         <input type="hidden" name="idListe" value="<?php echo $l->getId()?>">
                         <input type="text" class="form-control" name="texte" required/>
                         <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
@@ -81,10 +90,10 @@
                                 <?php
                                 if($t->getStatus() != "OK"){
                                     echo
-                                        '<a href="check.php?id='.$t->getId().'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
+                                        '<a href="check_prive.php?id='.$t->getId().'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
                                 }
                                 ?>
-                                <a href="supprimer_tache.php?id=<?php echo $t->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a href="supprimer_tache_prive.php?id=<?php echo $t->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             </center>
                         </td>
                     </tr>
@@ -102,7 +111,7 @@
 
 <div id="Public" class="tabcontent">
     <center>
-        <form method="POST" class="form-inline" action="ajout_liste.php">
+        <form method="POST" class="form-inline" action="ajout_liste_prive.php">
             <input type="text" class="form-control" name="titre" required/>
             <button class="btn btn-primary form-control" name="add">Ajouter Liste Prive</button>
         </form>
@@ -121,13 +130,13 @@
                 <?php
                 echo $l1->getTitre();
                 ?>
-                <a href="supprimer_liste.php?id=<?php echo $l1->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                <a href="supprimer_liste_prive.php?id=<?php echo $l1->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
             </h3>
             <hr style="border-top:1px dotted #ccc;"/>
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <center>
-                    <form method="POST" class="form-inline" action="ajout_tache.php">
+                    <form method="POST" class="form-inline" action="ajout_tache_prive.php">
                         <input type="hidden" name="idListe" value="<?php echo $l1->getId()?>">
                         <input type="text" class="form-control" name="texte" required/>
                         <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
@@ -165,10 +174,10 @@
                                 <?php
                                 if($t1->getStatus() != "OK"){
                                     echo
-                                        '<a href="check.php?id='.$t1->getId().'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
+                                        '<a href="check_prive.php?id='.$t1->getId().'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
                                 }
                                 ?>
-                                <a href="supprimer_tache.php?id=<?php echo $t1->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a href="supprimer_tache_prive.php?id=<?php echo $t1->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             </center>
                         </td>
                     </tr>
