@@ -1,6 +1,0 @@
-<?php
-public class VisiteurController
-{
-
-}
-?>
