@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 	require("metier/Connection.php");
     require("gateway/UtilisateurGateway.php");
     require("metier/Utilisateur.php");
@@ -18,6 +17,7 @@
 
 			if($result) {
                 if ($result->getPassword() == md5($password)) {
+                    $_SESSION['id']=$result->getUserId();
                     header("location:vue/pagemembre.php");
                     die;
                 }else{

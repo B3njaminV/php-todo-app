@@ -17,6 +17,5 @@ class UtilisateurGateway
         }
         return $this->result;
     }
-
 }
 ?>
