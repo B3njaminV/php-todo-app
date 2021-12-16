@@ -1,6 +1,8 @@
 <?php
 
 namespace controller;
+require "model/MembreModel.php";
+require "vue/erreur.php";
 
 class MembreController{
 
@@ -40,7 +42,7 @@ class MembreController{
 
                 default;
                 $dVueErreur[]="Erreur appel php";
-                require ($rep.$vue['index.php']);
+                require ($rep.$vue['erreur.php']);
                 break;
             }
         }catch(Exception $e){
@@ -49,9 +51,15 @@ class MembreController{
         }
     }
 
-    public function ajouterList($dVueErreur){
-
+    public function ajouterListe($dVueErreur){
+        global $rep, $vue;
+        $model=new MembreModel();
+        $data=$model->ajout_liste_prive();
+        $dVue = array(
+            header('location:../vue/pagemembre.php');
+        )
     }
+
 
     public function isConnected(){
         if(isset($_SESSION['userName'])){
