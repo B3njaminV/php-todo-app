@@ -18,26 +18,29 @@
             </form>
             <a class="navbar-brand">PROJET</a>
             <div class="tab">
-                <button class="tablinks" onclick="AffList(event, 'Public')" id="defaultOpen">Privé</button>
-                <button class="tablinks" onclick="AffList(event, 'Prive')">Public</button>
+                <button class="tablinks" onclick="AffList(event, 'Prive')" id="defaultOpen">Privé</button>
+                <button class="tablinks" onclick="AffList(event, 'Public')">Public</button>
             </div>
         </div>
 
     </center>
 </nav>
 
-<div id="Prive" class="tabcontent">
-
-    <div class="col-md-4"></div>
-    <?php
+<?php
     require('../metier/Connection.php');
     require("../gateway/TacheGateway.php");
     require("../metier/Tache.php");
     require("../gateway/ListeGateway.php");
     require("../metier/Liste.php");
-    $gateway1=new ListeGateway($con);
-    $tabListe=$gateway1->findAllPublicList();
+    $gateway=new ListeGateway($con);
+    $idUser=$_SESSION['id'];
+    ?>
 
+<div id="Public" class="tabcontent">
+
+    <div class="col-md-4"></div>
+    <?php
+    $tabListe=$gateway->findAllPublicList();
     Foreach ($tabListe as $l){
         ?>
         <div class="col-md-6 well">
@@ -46,7 +49,7 @@
                 echo $l->getTitre();
                 ?>
 
-                <a href="../action/supprimer_liste_prive.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                <a href="../action/supprimer_liste_public.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
             </h3>
             <hr style="border-top:1px dotted #ccc;"/>
             <div class="col-md-2"></div>
@@ -109,10 +112,11 @@
     ?>
 </div>
 
-<div id="Public" class="tabcontent">
+<div id="Prive" class="tabcontent">
     <center>
         <form method="POST" class="form-inline" action="../action/ajout_liste_prive.php">
             <input type="text" class="form-control" name="titre" required/>
+            <input type="hidden" name="idMembre" value="<?php echo $idUser?>">
             <button class="btn btn-primary form-control" name="add">Ajouter Liste Prive</button>
         </form>
     </center>
@@ -120,9 +124,7 @@
     <br/><br/><br/>
     <div class="col-md-4"></div>
     <?php
-    $gateway2=new ListeGateway($con);
-    $tabListe1=$gateway2->findAllPrivateList();
-
+    $tabListe1=$gateway->findAllPrivateList($idUser);
     Foreach ($tabListe1 as $l1){
         ?>
         <div class="col-md-6 well">
