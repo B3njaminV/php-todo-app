@@ -7,6 +7,7 @@ class MembreController{
     public function __construct(){
 
         global $rep, $vue, $con;
+        session_start();
         $userGw= new UtilsateurGateway($con);
         $dVueErreur=array();
 
@@ -18,20 +19,24 @@ class MembreController{
                 break;
 
                 case "ajouterListe";
-                $this->ajouterListe;
+                $this->ajouterListe($dVueErreur);
                 break;
 
-                case "supprListe";
-                $this->supprListe;
+                case "supprimerListe";
+                $this->supprimerListe($dVueErreur);
                 break;
 
                 case "ajouterTache";
-                $this->ajouterTache;
+                $this->ajouterTache($dVueErreur);
                 break;
 
-                case "supprTache";
-                $this->supprTache;
+                case "supprimerTache";
+                $this->supprimerTache($dVueErreur);
                 break;
+
+                case "checkTache";
+                    $this->checkTache($dVueErreur);
+                    break;
 
                 default;
                 $dVueErreur[]="Erreur appel php";
@@ -44,27 +49,8 @@ class MembreController{
         }
     }
 
-    public function connection($userName, $password){
-        validation::nettoyageChaine($userName);
-        validation::nettoyageChaine($password);
-        $userNameDB=$this->userGw->getUserName();
-        $passwordDB=$this->userGw->getPassword();
-        if(($userName==$userNameDB) && (password_verify($password,$passwordDB))){
-            //$_SESSION['status']="membre";
-            $_SESSION['userName']=$userName;
-        }else{
-            require $vue['erreur'];
-            throw new Exception{"Erreur a la connection"};
-        }
+    public function ajouterList($dVueErreur){
 
-    }
-
-    public function ajouterList(){
-
-    }
-
-    public function Reinit(){
-        session_reset();
     }
 
     public function isConnected(){
