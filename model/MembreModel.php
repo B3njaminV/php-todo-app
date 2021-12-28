@@ -2,23 +2,24 @@
 
 namespace model;
 
-require('../metier/Connection.php');
-require("../gateway/ListeGateway.php");
-require("../metier/Liste.php");
-require("../gateway/TacheGateway.php");
-require("../metier/Tache.php");
+class MembreModel{
 
-public class MembreModel{
+    private $con;
+    public $gatewayListe;
+    public $gatewayTache;
 
-    public function ajout_list_prive(){
-        if(ISSET($_POST['add'])){
-            if($_POST['titre'] != ""){
-                $titre = $_POST['titre'];
-                $idM=$_POST['idMembre'];
-                $gateway=new ListeGateway($con);
-                $gateway->addPrivateList($titre, $idM);
-            }
-        }
+    public function __construct($con){
+        $this->con=$con;
+        $this->gatewayListe=new ListeGateway($con);
+        $this->gatewayTache=new TacheGateway($con);
+    }
+
+    public function affichage_liste_prive(){
+        $this->gatewayListe->findAllPrivateList();
+        header('location:../vue/pagemembre.php');
+    }
+
+    public function ajout_liste_prive($titre){
     }
 
     public function ajout_tache_prive(){
@@ -26,8 +27,8 @@ public class MembreModel{
             if($_POST['texte'] != ""){
                 $texte = $_POST['texte'];
                 $idListeParent = $_POST['idListe'];
-                $gateway=new TacheGateway($con);
-                $gateway->addTask($texte, $idListeParent);
+                $this->gatewayTache->addTask($texte, $idListeParent);
+                header('location:../vue/pagemembre.php');
             }
         }
     }
@@ -35,24 +36,24 @@ public class MembreModel{
     public function check_prive(){
         if($_GET['id'] != ""){
             $id = $_GET['id'];
-            $gateway=new TacheGateway($con);
-            $gateway->checkTask($id);
+            $this->gatewayTache->checkTask($id);
+            header('location:../vue/pagemembre.php');
         }
     }
 
     public function supprimer_liste_prive(){
         if($_GET['id']){
             $id = $_GET['id'];
-            $gateway=new ListeGateway($con);
-            $gateway->delList($id);
+            $this->gatewayListe->delList($id);
+            header("location:../vue/pagemembre.php");
         }
     }
 
     public function supprimer_tache_prive(){
         if($_GET['id']){
             $id = $_GET['id'];
-            $gateway=new TacheGateway($con);
-            $gateway->delTask($id);
+            $this->gatewayTache->delTask($id);
+            header("location:../vue/pagemembre.php");
         }
     }
 

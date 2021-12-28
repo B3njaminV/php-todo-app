@@ -27,14 +27,13 @@
 </nav>
 
 <?php
-    require('../metier/Connection.php');
-    require("../gateway/TacheGateway.php");
-    require("../metier/Tache.php");
-    require("../gateway/ListeGateway.php");
-    require("../metier/Liste.php");
-    $gateway=new ListeGateway($con);
-    $idUser=$_SESSION['id'];
-    ?>
+require('../metier/Connection.php');
+require("../gateway/TacheGateway.php");
+require("../metier/Tache.php");
+require("../gateway/ListeGateway.php");
+require("../metier/Liste.php");
+$gateway=new ListeGateway($con);
+?>
 
 <div id="Public" class="tabcontent">
 
@@ -114,9 +113,9 @@
 
 <div id="Prive" class="tabcontent">
     <center>
-        <form method="POST" class="form-inline" action="../action/ajout_liste_prive.php">
+        <form method="POST" class="form-inline" action="../controller/MembreController.php?action=ajouterListe">
             <input type="text" class="form-control" name="titre" required/>
-            <input type="hidden" name="idMembre" value="<?php echo $idUser?>">
+            <input type="hidden" name="idMembre" value="<?php //echo $idUser?>">
             <button class="btn btn-primary form-control" name="add">Ajouter Liste Prive</button>
         </form>
     </center>
@@ -124,7 +123,7 @@
     <br/><br/><br/>
     <div class="col-md-4"></div>
     <?php
-    $tabListe1=$gateway->findAllPrivateList($idUser);
+    $tabListe1=$gateway->findAllPrivateList();
     Foreach ($tabListe1 as $l1){
         ?>
         <div class="col-md-6 well">

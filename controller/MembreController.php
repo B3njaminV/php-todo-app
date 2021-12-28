@@ -1,17 +1,17 @@
 <?php
-
 namespace controller;
-require "model/MembreModel.php";
-require "vue/erreur.php";
+use model\MembreModel;
+
+require "../model/MembreModel.php";
 
 class MembreController{
 
-    public function __construct(){
+    public $model;
 
-        global $rep, $vue, $con;
+    public function __construct($con){
+
         session_start();
-        $userGw= new UtilsateurGateway($con);
-        $dVueErreur=array();
+        $this->model= new MembreModel($con);
 
         try{
             $action=$_REQUEST['action'];
@@ -21,51 +21,45 @@ class MembreController{
                 break;
 
                 case "ajouterListe";
-                $this->ajouterListe($dVueErreur);
+                $this->ajouterListe();
                 break;
 
                 case "supprimerListe";
-                $this->supprimerListe($dVueErreur);
+                $this->supprimerListe();
                 break;
 
                 case "ajouterTache";
-                $this->ajouterTache($dVueErreur);
+                $this->ajouterTache();
                 break;
 
                 case "supprimerTache";
-                $this->supprimerTache($dVueErreur);
+                $this->supprimerTache();
                 break;
 
                 case "checkTache";
-                    $this->checkTache($dVueErreur);
+                    $this->checkTache();
+                    break;
+
+                case "affichage";
+                    $this->affichage();
                     break;
 
                 default;
-                $dVueErreur[]="Erreur appel php";
-                require ($rep.$vue['erreur.php']);
+                    echo "Erreur";
                 break;
             }
         }catch(Exception $e){
-            $dVueErreur[]="Erreur malotru!";
-            require($rep.$vue['erreur']);
+            echo "Erreur !!!";
         }
     }
 
-    public function ajouterListe($dVueErreur){
-        global $rep, $vue;
-        $model=new MembreModel();
-        $data=$model->ajout_liste_prive();
-        $dVue = array(
-            header('location:../vue/pagemembre.php');
-        )
-    }
-
-
-    public function isConnected(){
-        if(isset($_SESSION['userName'])){
-            return true;
-        }else{
-            return false,
+    public function ajouterListe(){
+        if(ISSET($_POST['add'])){
+            if($_POST['titre'] != ""){
+                $titre = $_POST['titre'];
+                $this->model->ajout_liste_prive($titre);
+                header('location:../vue/pagemembre.php');
+            }
         }
     }
 }

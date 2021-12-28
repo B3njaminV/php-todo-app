@@ -7,8 +7,8 @@ class ListeGateway
         $this->con=$con;
     }
 
-    public function findAllPrivateList($id){
-        $query = "SELECT * FROM liste WHERE status='prive' AND idParent='$id'";
+    public function findAllPrivateList(){
+        $query = "SELECT * FROM liste WHERE status='prive'";
         $this->con->executeQuery($query);
         $results=$this->con->getResults();
 
@@ -34,8 +34,8 @@ class ListeGateway
         $this->con->executeQuery($query);
     }
 
-    public function addPrivateList($titre, $idMembre){
-        $query = "INSERT INTO `liste`(`titre`, `status`, `idParent`) VALUES('$titre', 'prive', '$idMembre')";
+    public function addPrivateList($titre){
+        $query = "INSERT INTO `liste`(`titre`, `status`) VALUES('$titre', 'prive')";
         $this->con->executeQuery($query);
     }
 
