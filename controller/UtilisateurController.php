@@ -1,33 +1,78 @@
 <?php
 
-    namespace controller;
+namespace controller;
 
-    class UtilisateurController{
+class UtilisateurController{
 
-        public $model;
-        public function __construct(){
-            global $rep, $vue, $action;
-            $dVueErreur = array();
+    public function __construct(){
 
-            $this->model= new UtilisateurModel($con);
+        global $rep, $vue, $con;
+        $userGw= new UtilsateurGateway($con);
+        $dVueErreur=array();
 
-            try{
-                switch ($action){
-                    case NULL;
-                    echo "Pas d'action user";
+        try{
+            $action=$_REQUEST['action'];
+            switch ($action){
+                case NULL;
+                    $this->Reinit();
                     break;
 
-                    default;
-                    echo "Action user";
+                case "ajouterListe";
+                    $this->ajouterListe;
                     break;
-                }
+
+                case "supprListe";
+                    $this->supprListe;
+                    break;
+
+                case "ajouterTache";
+                    $this->ajouterTache;
+                    break;
+
+                case "supprTache";
+                    $this->supprTache;
+                    break;
+
+                default;
+                    $dVueErreur[]="Erreur appel php";
+                    require ($rep.$vue['index.php']);
+                    break;
             }
-            catch(Exception $e) {
-                echo "Erreur !!!";
-                $dVueErreur[] = "Erreur !!!";
-                require ($rep.$vue['erreur']);
-            }
+        }catch(Exception $e){
+            $dVueErreur[]="Erreur malotru!";
+            require($rep.$vue['erreur']);
         }
     }
 
+    public function connection($userName, $password){
+        validation::nettoyageChaine($userName);
+        validation::nettoyageChaine($password);
+        $userNameDB=$this->userGw->getUserName();
+        $passwordDB=$this->userGw->getPassword();
+        if(($userName==$userNameDB) && (password_verify($password,$passwordDB))){
+            //$_SESSION['status']="membre";
+            $_SESSION['userName']=$userName;
+        }else{
+            require $rep.$vue['erreur'];
+            throw new Exception{"Erreur a la connection"};
+        }
+
+    }
+
+    public function ajouterList(){
+
+    }
+
+    public function Reinit(){
+        session_reset();
+    }
+
+    public function isConnected(){
+        if(isset($_SESSION['userName'])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
 ?>

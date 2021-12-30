@@ -3,7 +3,7 @@
     public class FrontController{
         public function __construct(){
             global $rep, $vue, $action;
-
+            $listeActionCToutCassé = array();
             $listeActionMembre = array('connexion','deconnexion','checkPublic','checkPrive','ajouterListePublic','ajouterListePrive', 'ajouterTachePrive','ajouterTachePublic','supprimerListePublic','supprimerListePrive','supprimerTachePrive','supprimerTachePublic');
             $listeActionUser = array('ajouterListePublic','ajouterTachePublic','checkPublic');
             session_start();
@@ -17,7 +17,7 @@
                     $action = $_REQUEST['action'];
                 }
 
-                if(in_array($action, $listeAction)){
+                if(in_array($action, $listeActionCToutCassé)){
                     if($action == "connexion" && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])){
                         $isMembre->connexion($_REQUEST['login']), $_REQUEST['password']);
                     } elseif($action == "deconnexion") {
