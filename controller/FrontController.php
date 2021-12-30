@@ -4,7 +4,7 @@
         public function __construct(){
             global $rep, $vue, $action;
 
-            $listeAction = array('connexion','deconnexion', 'ajouterListePublic', 'ajouterListePrive', 'ajouterTachePrive','ajouterTachePublic','supprimerListePublic','supprimerListePrive','supprimerTachePrive','supprimerTachePublic');
+            $listeAction = array('connexion','deconnexion','ajouterListePublic','ajouterListePrive', 'ajouterTachePrive','ajouterTachePublic','supprimerListePublic','supprimerListePrive','supprimerTachePrive','supprimerTachePublic');
             session_start();
             $dVueErreur = array();
 
@@ -23,7 +23,7 @@
                     }
 
                     if($action == "ajouterListePrive" && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])) {
-
+                        $isMembre->ajouter_liste_prive();
                     } else {
                         require('vue/connexion.php');
                     }
