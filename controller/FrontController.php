@@ -29,17 +29,17 @@
                     }
 
                     if($action == "ajouterTachePrive" && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])) {
-
+                        $isMembre->ajout_tache_prive();
                     } else {
                         require('vue/connexion.php');
                     }
-
+                    //je me souviens plus si un membre peut ajouter des taches publiques
                     if($action == "ajouterListePublic"){
-
+                        $isMembre->ajout_liste_public();
                     }
 
                     if($action == "ajouterTachePublic"){
-
+                        $isMembre->ajout_tache_public();
                     }
 
                     if($isMembre->isMembre() == NULL){

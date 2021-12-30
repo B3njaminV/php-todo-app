@@ -10,6 +10,9 @@
 
     public class UtilisateurModel{
 
+        public $gatewayListe;
+        public $gatewayTache;
+
         public function ajout_liste_public(){
             if(ISSET($_POST['add'])){
                 if($_POST['titre'] != ""){

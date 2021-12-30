@@ -6,7 +6,7 @@
     class MembreController{
 
         //public $model;
-        public function __construct($con){
+        public function __construct(){
             global $rep, $vue, $action;
             $dVueErreur = array();
 
@@ -28,7 +28,7 @@
                         break;
                 }
             }
-            catch(Exception $e) {
+            catch(Exception $e){
                 echo "Erreur !!!";
                 $dVueErreur[] = "Erreur !!!";
                 require ($rep.$vue['erreur']);
