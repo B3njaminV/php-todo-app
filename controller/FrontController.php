@@ -1,40 +1,60 @@
 <?php
 
-public class FrontController{
-    public function __construct(){
-        global $rep, $vue, $action;
+    public class FrontController{
+        public function __construct(){
+            global $rep, $vue, $action;
 
-        $listeAction = array('connexion','deconnexion', 'ajouterListe','ajouterTache','supprimerListe','supprimerTache');
-        session_start();
-        $dVueErreur = array();
+            $listeAction = array('connexion','deconnexion', 'ajouterListePublic', 'ajouterListePrive', 'ajouterTachePrive','ajouterTachePublic','supprimerListePublic','supprimerListePrive','supprimerTachePrive','supprimerTachePublic');
+            session_start();
+            $dVueErreur = array();
 
-        try{
-            $isMembre = new MembreModel();
+            try{
+                $isMembre = new MembreModel();
 
-            if(!empty($_REQUEST['action'])){
-                $action = $_REQUEST['action'];
-            }
-
-            if(in_array($action, $listeAction)){
-                if($action == "connexion" && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])){
-                    $isMembre->connexion($_REQUEST['login']), $_REQUEST['password']);
-                } elseif($action == "deconnexion") {
-                    $isMembre->deconnexion();
+                if(!empty($_REQUEST['action'])){
+                    $action = $_REQUEST['action'];
                 }
 
-                if($isMembre->isMembre() == NULL){
-                    require('vue/connexion.php');
+                if(in_array($action, $listeAction)){
+                    if($action == "connexion" && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])){
+                        $isMembre->connexion($_REQUEST['login']), $_REQUEST['password']);
+                    } elseif($action == "deconnexion") {
+                        $isMembre->deconnexion();
+                    }
+
+                    if($action == "ajouterListePrive" && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])) {
+
+                    } else {
+                        require('vue/connexion.php');
+                    }
+
+                    if($action == "ajouterTachePrive" && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])) {
+
+                    } else {
+                        require('vue/connexion.php');
+                    }
+
+                    if($action == "ajouterListePublic"){
+
+                    }
+
+                    if($action == "ajouterTachePublic"){
+
+                    }
+
+                    if($isMembre->isMembre() == NULL){
+                        require('vue/connexion.php');
+                    } else {
+                        $membre = new MembreController();
+                    }
                 } else {
-                    $membre = new MembreController();
+                    $user = new UtilisateurController();
                 }
-            } else {
-                $user = new UtilisateurController();
             }
-        }
-        catch (Exception $e){
-            $dVueErreur[] = "Erreur : ".$e->getMessage()."<br/>";
-            require($rep.$vue['erreur']);
+            catch (Exception $e){
+                $dVueErreur[] = "Erreur : ".$e->getMessage()."<br/>";
+                require($rep.$vue['erreur']);
+            }
         }
     }
-}
 ?>

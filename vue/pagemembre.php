@@ -9,7 +9,7 @@
     <center>
         <div class="container-fluid">
             <?php
-            include("../connexion/deconnexion.php")
+            include("../vue/deconnexion.php")
             ?>
             <form method="post">
                 <div class="tab" width="15px">
