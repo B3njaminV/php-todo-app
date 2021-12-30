@@ -1,38 +1,65 @@
 <?php
-    namespace controller;
-    use model\MembreModel;
-    require "../model/MembreModel.php";
+namespace controller;
+use model\MembreModel;
 
-    class MembreController{
+require "../model/MembreModel.php";
 
-        //public $model;
-        public function __construct(){
-            global $rep, $vue, $action;
-            $dVueErreur = array();
+class MembreController{
 
-            //$this->model= new MembreModel($con);
+    public $model;
 
-            try{
-                $isMembre = MembreController();
-                if($isMembre->isMembre() == NULL){
-                    require('vue/connexion.php');
-                }
+    public function __construct($con){
 
-                switch ($action){
-                    case NULL;
-                        echo "Pas d'action membre";
-                        break;
+        session_start();
+        $this->model= new MembreModel($con);
 
-                    default;
-                        echo "Action membre";
-                        break;
-                }
+        try{
+            $action=$_REQUEST['action'];
+            switch ($action){
+                case NULL;
+                    $this->Reinit();
+                    break;
+
+                case "ajouterListe";
+                    $this->ajouterListe();
+                    break;
+
+                case "supprimerListe";
+                    $this->supprimerListe();
+                    break;
+
+                case "ajouterTache";
+                    $this->ajouterTache();
+                    break;
+
+                case "supprimerTache";
+                    $this->supprimerTache();
+                    break;
+
+                case "checkTache";
+                    $this->checkTache();
+                    break;
+
+                case "affichage";
+                    $this->affichage();
+                    break;
+
+                default;
+                    echo "Erreur";
+                    break;
             }
-            catch(Exception $e){
-                echo "Erreur !!!";
-                $dVueErreur[] = "Erreur !!!";
-                require ($rep.$vue['erreur']);
+        }catch(Exception $e){
+            echo "Erreur !!!";
+        }
+    }
+
+    public function ajouterListe(){
+        if(ISSET($_POST['add'])){
+            if($_POST['titre'] != ""){
+                $titre = $_POST['titre'];
+                $this->model->ajout_liste_prive($titre);
+                header('location:../vue/pagemembre.php');
             }
         }
     }
-?>
+}

@@ -1,13 +1,15 @@
 <?php
 
     namespace controller;
+
     class UtilisateurController{
-        //public $model;
+
+        public $model;
         public function __construct(){
             global $rep, $vue, $action;
             $dVueErreur = array();
 
-            //$this->model= new UtilisateurModel($con);
+            $this->model= new UtilisateurModel($con);
 
             try{
                 switch ($action){

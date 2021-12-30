@@ -4,11 +4,13 @@
         public function __construct(){
             global $rep, $vue, $action;
 
-            $listeAction = array('connexion','deconnexion','ajouterListePublic','ajouterListePrive', 'ajouterTachePrive','ajouterTachePublic','supprimerListePublic','supprimerListePrive','supprimerTachePrive','supprimerTachePublic');
+            $listeActionMembre = array('connexion','deconnexion','checkPublic','checkPrive','ajouterListePublic','ajouterListePrive', 'ajouterTachePrive','ajouterTachePublic','supprimerListePublic','supprimerListePrive','supprimerTachePrive','supprimerTachePublic');
+            $listeActionUser = array('ajouterListePublic','ajouterTachePublic','checkPublic');
             session_start();
             $dVueErreur = array();
 
             try{
+                $isUser = new UtilisateurModel();
                 $isMembre = new MembreModel();
 
                 if(!empty($_REQUEST['action'])){
@@ -33,6 +35,15 @@
                     } else {
                         require('vue/connexion.php');
                     }
+
+                    if($action == "checkPrive"){
+                        $is
+                    }
+
+                    if($action == "checkPublic"){
+
+                    }
+
                     //je me souviens plus si un membre peut ajouter des taches publiques
                     if($action == "ajouterListePublic"){
                         $isMembre->ajout_liste_public();
