@@ -1,5 +1,5 @@
 <?php
-/*
+
 namespace model;
 
 require('../metier/Connection.php');
@@ -56,5 +56,5 @@ public class UtilisateurModel{
     }
 
 }
-*/
+
 ?>

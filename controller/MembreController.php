@@ -20,24 +20,24 @@ class MembreController{
             }
             switch ($action){
                 case NULL;
-                $this->Reinit();
-                break;
+                    $this->Reinit();
+                    break;
 
                 case "ajouterListe";
-                $this->ajouterListe();
-                break;
+                    $this->ajouterListe();
+                    break;
 
                 case "supprimerListe";
-                $this->supprimerListe();
-                break;
+                    $this->supprimerListe();
+                    break;
 
                 case "ajouterTache";
-                $this->ajouterTache();
-                break;
+                    $this->ajouterTache();
+                    break;
 
                 case "supprimerTache";
-                $this->supprimerTache();
-                break;
+                    $this->supprimerTache();
+                    break;
 
                 case "checkTache";
                     $this->checkTache();
@@ -49,7 +49,7 @@ class MembreController{
 
                 default;
                     echo "Erreur";
-                break;
+                    break;
             }
         }catch(Exception $e){
             echo "Erreur !!!";

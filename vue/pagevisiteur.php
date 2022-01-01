@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <a class="navbar-brand">PROJET</a>
             <?php
-            include("../connexion/deconnexion.php")
+            include("../vue/deconnexion.php")
             ?>
             <form method="post">
                 <div class="tab">

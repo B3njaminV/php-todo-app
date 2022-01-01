@@ -14,29 +14,29 @@ class UtilisateurController{
             $action=$_REQUEST['action'];
             switch ($action){
                 case NULL;
-                $this->Reinit();
-                break;
+                    $this->Reinit();
+                    break;
 
                 case "ajouterListe";
-                $this->ajouterListe;
-                break;
+                    $this->ajouterListe;
+                    break;
 
                 case "supprListe";
-                $this->supprListe;
-                break;
+                    $this->supprListe;
+                    break;
 
                 case "ajouterTache";
-                $this->ajouterTache;
-                break;
+                    $this->ajouterTache;
+                    break;
 
                 case "supprTache";
-                $this->supprTache;
-                break;
+                    $this->supprTache;
+                    break;
 
                 default;
-                $dVueErreur[]="Erreur appel php";
-                require ($rep.$vue['index.php']);
-                break;
+                    $dVueErreur[]="Erreur appel php";
+                    require ($rep.$vue['index.php']);
+                    break;
             }
         }catch(Exception $e){
             $dVueErreur[]="Erreur malotru!";
@@ -75,3 +75,4 @@ class UtilisateurController{
         }
     }
 }
+?>
