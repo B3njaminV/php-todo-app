@@ -1,5 +1,9 @@
 <?php
-	require("metier/Connection.php");
+
+use controller\MembreController;
+
+    require("metier/Connection.php");
+    require("controller/MembreController.php");
     require("gateway/UtilisateurGateway.php");
     require("metier/Utilisateur.php");
 
@@ -18,7 +22,7 @@
 			if($result) {
                 if ($result->getPassword() == md5($password)) {
                     $_SESSION['id']=$result->getUserId();
-                    header("location:vue/pagemembre.php");
+                    $controllerMembre = new MembreController($con);
                     die;
                 }else{
                     echo "WRONG PASSWORD !";
@@ -32,7 +36,7 @@
 
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
     {
-        header("location:vue/pagevisiteur.php");
+        $controllerMembre = new UtilisateurController($con);
         die;
     }
 ?>

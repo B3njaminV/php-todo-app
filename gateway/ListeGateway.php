@@ -1,10 +1,11 @@
 <?php
+require "metier/Liste.php";
 class ListeGateway
 {
     private $con;
 
-    public function __construct($con){
-        $this->con=$con;
+    public function __construct($conn){
+        $this->con=$conn;
     }
 
     public function findAllPrivateList(){

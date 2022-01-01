@@ -1,25 +1,27 @@
 <?php
-
 namespace model;
+use ListeGateway;
+use TacheGateway;
+require "gateway/ListeGateway.php";
+require "gateway/TacheGateway.php";
 
 class MembreModel{
 
-    private $con;
     public $gatewayListe;
     public $gatewayTache;
 
     public function __construct($con){
-        $this->con=$con;
         $this->gatewayListe=new ListeGateway($con);
         $this->gatewayTache=new TacheGateway($con);
     }
 
     public function affichage_liste_prive(){
-        $this->gatewayListe->findAllPrivateList();
-        header('location:../vue/pagemembre.php');
+        $tab=$this->gatewayListe->findAllPrivateList();
+        return $tab;
     }
 
     public function ajout_liste_prive($titre){
+        $this->gatewayListe->addPrivateList($titre);
     }
 
     public function ajout_tache_prive(){

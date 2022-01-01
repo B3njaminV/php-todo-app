@@ -1,20 +1,23 @@
 <?php
 namespace controller;
 use model\MembreModel;
-
-require "../model/MembreModel.php";
+require "model/MembreModel.php";
 
 class MembreController{
 
-    public $model;
+    private $model;
 
     public function __construct($con){
-
         session_start();
         $this->model= new MembreModel($con);
 
         try{
-            $action=$_REQUEST['action'];
+            if(!isset($_REQUEST['action'])){
+                $action=null;
+            }
+            else{
+                $action=$_REQUEST['action'];
+            }
             switch ($action){
                 case NULL;
                 $this->Reinit();
@@ -53,13 +56,20 @@ class MembreController{
         }
     }
 
+    public function Reinit(){
+        $listeDeListe = $this->model->affichage_liste_prive();
+        require ("vue/pagemembre.php");
+    }
+
     public function ajouterListe(){
         if(ISSET($_POST['add'])){
             if($_POST['titre'] != ""){
                 $titre = $_POST['titre'];
                 $this->model->ajout_liste_prive($titre);
-                header('location:../vue/pagemembre.php');
+                $this->Reinit();
             }
         }
     }
+
+
 }
