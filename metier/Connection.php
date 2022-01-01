@@ -36,16 +36,3 @@ catch( PDOException $Exception ) {
 }
 
 ?>
-
-$user= 'root';
-$pass='';
-$dsn='mysql:host=localhost;dbname=bdd';
-try{
-    $con=new connection($dsn,$user,$pass);
-}
-catch( PDOException $Exception ) {
-    echo 'ERREUR DE CONNEXION A LA BDD !';
-    echo $Exception->getMessage();
-}
-
-?>
