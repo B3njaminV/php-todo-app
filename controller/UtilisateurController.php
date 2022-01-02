@@ -1,36 +1,52 @@
 <?php
-
 namespace controller;
+use model\UtilisateurModel;
+require "model/UtilisateurModel.php";
 
 class UtilisateurController{
 
-    public function __construct(){
+    private $model;
 
-        global $rep, $vue, $con;
-        $userGw= new UtilsateurGateway($con);
+    public function __construct($con){
+        session_start();
+        $this->model= new UtilisateurModel($con);
+        global $rep, $vue;
         $dVueErreur=array();
 
         try{
-            $action=$_REQUEST['action'];
+            if(!isset($_REQUEST['action'])){
+                $action=NULL;
+            }
+            else{
+                $action=$_REQUEST['action'];
+            }
             switch ($action){
                 case NULL;
                     $this->Reinit();
                     break;
 
                 case "ajouterListe";
-                    $this->ajouterListe;
+                    $this->ajouterListe();
                     break;
 
                 case "supprListe";
-                    $this->supprListe;
+                    $this->supprListe();
                     break;
 
                 case "ajouterTache";
-                    $this->ajouterTache;
+                    $this->ajouterTache();
                     break;
 
                 case "supprTache";
-                    $this->supprTache;
+                    $this->supprTache();
+                    break;
+
+                case "checkTache";
+                    $this->checkTache();
+                    break;
+
+                case "affichage";
+                    $this->affichage();
                     break;
 
                 default;
@@ -43,7 +59,7 @@ class UtilisateurController{
             require($rep.$vue['erreur']);
         }
     }
-
+/*
     public function connection($userName, $password){
         validation::nettoyageChaine($userName);
         validation::nettoyageChaine($password);
@@ -62,17 +78,10 @@ class UtilisateurController{
     public function ajouterList(){
 
     }
-
+*/
     public function Reinit(){
-        session_reset();
-    }
-
-    public function isConnected(){
-        if(isset($_SESSION['userName'])){
-            return true;
-        }else{
-            return false;
-        }
+        $listeDeListe = $this->model->affichage_liste_public();
+        require ("vue/pagevisiteur.php");
     }
 }
 ?>
