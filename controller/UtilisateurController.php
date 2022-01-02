@@ -30,7 +30,7 @@ class UtilisateurController{
                     break;
 
                 case "supprListe";
-                    $this->supprListe();
+                    $this->supprimerListe();
                     break;
 
                 case "ajouterTache";
@@ -38,7 +38,7 @@ class UtilisateurController{
                     break;
 
                 case "supprTache";
-                    $this->supprTache();
+                    $this->supprimerTache();
                     break;
 
                 case "checkTache";
@@ -74,11 +74,37 @@ class UtilisateurController{
         }
 
     }
-
-    public function ajouterList(){
-
-    }
 */
+    public function ajouterListe(){
+        if(isset($_POST['add'])){
+            if($_POST['titre'] != ""){
+                $titre=$_POST['titre'];
+                $this->model->ajout_liste_public($titre);
+                $this->Reinit();
+            }
+        }
+    }
+
+    public function affichage(){
+        $this->model->affichage_liste_public();
+    }
+
+    public function checkTache(){
+        $this->model->check_public();
+    }
+
+    public function ajouterTache(){
+        $this->model->ajout_tache_public();
+    }
+
+    public function supprimerListe(){
+        $this->model->supprimer_liste_public();
+    }
+
+    public function supprimerTache(){
+        $this->model->supprimer_tache_public();
+    }
+
     public function Reinit(){
         $listeDeListe = $this->model->affichage_liste_public();
         require ("vue/pagevisiteur.php");

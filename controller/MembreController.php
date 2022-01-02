@@ -71,5 +71,25 @@ class MembreController{
         }
     }
 
+    public function affichage(){
+        $this->model->affichage_liste_prive();
+    }
+
+    public function checkTache(){
+        $this->model->check_prive();
+    }
+
+    public function ajouterTache(){
+        $this->model->ajout_tache_prive();
+    }
+
+    public function supprimerListe(){
+        $this->model->supprimer_liste_prive();
+    }
+
+    public function supprimerTache(){
+        $this->model->supprimer_tache_prive();
+    }
 
 }
+?>
