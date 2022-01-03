@@ -59,22 +59,7 @@ class UtilisateurController{
             require($rep.$vue['erreur']);
         }
     }
-/*
-    public function connection($userName, $password){
-        validation::nettoyageChaine($userName);
-        validation::nettoyageChaine($password);
-        $userNameDB=$this->userGw->getUserName();
-        $passwordDB=$this->userGw->getPassword();
-        if(($userName==$userNameDB) && (password_verify($password,$passwordDB))){
-            //$_SESSION['status']="membre";
-            $_SESSION['userName']=$userName;
-        }else{
-            require $rep.$vue['erreur'];
-            throw new Exception{"Erreur a la connection"};
-        }
 
-    }
-*/
     public function ajouterListe(){
         if(isset($_POST['add'])){
             if($_POST['titre'] != ""){

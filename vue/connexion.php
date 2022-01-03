@@ -1,45 +1,3 @@
-<?php
-
-use controller\MembreController;
-require("metier/Connection.php");
-require("gateway/UtilisateurGateway.php");
-require("metier/Utilisateur.php");
-require "controller/MembreController.php";
-
-	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['member']))
-	{
-		$user_name = $_POST['user_name'];
-		$password = $_POST['password'];
-
-
-		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
-		{
-
-            $gateway=new UtilisateurGateway($con);
-            $result=$gateway->findOneUser($user_name);
-
-			if($result) {
-                if ($result->getPassword() == md5($password)) {
-                    $_SESSION['id']=$result->getUserId();
-                    $controllerMembre = new MembreController($con);
-                    die;
-                }else{
-                    echo "WRONG PASSWORD !";
-                }
-             }
-		}else
-		{
-            echo "WRONG PASSWORD !";
-		}
-	}
-
-    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
-    {
-        $controllerUser= new UtilisateurController($con);
-        die;
-    }
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,14 +37,15 @@ require "controller/MembreController.php";
 
 	<div id="box">
 		
-		<form method="post">
+		<form method="post"  action="">
 			<div style="font-size: 20px;margin: 10px;color: white;">Connexion</div>
 
 			<input id="text" type="text" name="user_name" placeholder="Pseudo"><br><br>
 			<input id="text" type="password" name="password" placeholder="Mot de Passe"<br><br><br><br>
+            <input type="hidden" name="action" value="connecter">
             <input id="button" name="member" type="submit" value="Login">
             <input id="button" name="user" type="submit" value="Simple visiteur">
-		</form>
+        </form>
 	</div>
 </body>
 </html>

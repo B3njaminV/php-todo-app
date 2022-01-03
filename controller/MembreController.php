@@ -1,14 +1,12 @@
 <?php
 namespace controller;
-use model\MembreModel;
-require "model/MembreModel.php";
 
 class MembreController{
 
     private $model;
 
-    public function __construct($con){
-        $this->model= new MembreModel($con);
+    public function __construct($con, $modelMembre){
+        $this->model= $modelMembre;
         try{
             if(!isset($_REQUEST['action'])){
                 $action=null;
