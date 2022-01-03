@@ -7,8 +7,7 @@
     public class FrontController{
         public function __construct(){
             global $rep, $vue;
-            $listeActionMembre = array('connexion','deconnexion','checkPublic','checkPrive','ajouterListePublic','ajouterListePrive', 'ajouterTachePrive','ajouterTachePublic','supprimerListePublic','supprimerListePrive','supprimerTachePrive','supprimerTachePublic');
-            $listeActionUser = array('ajouterListePublic','ajouterTachePublic','checkPublic');
+            $listeActionMembre = array('connexion','deconnexion');
             $dVueErreur = array();
 
             try{
