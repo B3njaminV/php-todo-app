@@ -6,7 +6,7 @@ use TacheGateway;
 require "gateway/ListeGateway.php";
 require "gateway/TacheGateway.php";
 
-public class UtilisateurModel{
+class UtilisateurModel{
 
     public $gatewayListe;
     public $gatewayTache;

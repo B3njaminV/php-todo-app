@@ -2,11 +2,9 @@
 
 use controller\MembreController;
 require("metier/Connection.php");
-require("controller/MembreController.php");
 require("gateway/UtilisateurGateway.php");
 require("metier/Utilisateur.php");
-
-session_start();
+require "controller/MembreController.php";
 
 	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['member']))
 	{
