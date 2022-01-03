@@ -1,11 +1,12 @@
 <?php
 
 use controller\MembreController;
+require("metier/Connection.php");
+require("controller/MembreController.php");
+require("gateway/UtilisateurGateway.php");
+require("metier/Utilisateur.php");
 
-    require("metier/Connection.php");
-    require("controller/MembreController.php");
-    require("gateway/UtilisateurGateway.php");
-    require("metier/Utilisateur.php");
+session_start();
 
 	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['member']))
 	{
@@ -36,7 +37,7 @@ use controller\MembreController;
 
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
     {
-        $controllerMembre = new UtilisateurController($con);
+        $controllerUser= new UtilisateurController($con);
         die;
     }
 ?>

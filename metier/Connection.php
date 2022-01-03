@@ -25,7 +25,7 @@ class connection extends PDO {
 }
 
 $user= 'root';
-$pass='root';
+$pass='';
 $dsn='mysql:host=localhost;dbname=bdd';
 try{
     $con=new connection($dsn,$user,$pass);

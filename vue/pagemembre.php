@@ -5,6 +5,23 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
+<script>
+    document.getElementById("defaultOpen").click();
+    function AffList(evt, choix) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(choix).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
 <nav class="navbar navbar-default">
     <center>
         <div class="container-fluid">
@@ -26,11 +43,15 @@
     </center>
 </nav>
 
+<?php
+
+?>
 <div id="Prive" class="tabcontent">
     <center>
-        <form method="POST" class="form-inline" action="MembreController.php?action=ajouterListe">
+        <form method="POST" class="form-inline" action="">
             <input type="text" class="form-control" name="titre" required/>
             <input type="hidden" name="idMembre" value="<?php //echo $idUser?>">
+            <input type="hidden" name="action" value="ajouterListe">
             <button class="btn btn-primary form-control" name="add">Ajouter Liste Prive</button>
         </form>
     </center>
@@ -45,7 +66,7 @@
                 <?php
                 echo $l->getTitre();
                 ?>
-                <a href="../action/supprimer_liste_prive.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                <a href="?supprimer_liste_prive.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
             </h3>
             <hr style="border-top:1px dotted #ccc;"/>
             <div class="col-md-2"></div>
@@ -183,24 +204,6 @@
     }
     ?>
 </div>
-
-
-<script>
-    document.getElementById("defaultOpen").click();
-    function AffList(evt, choix) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(choix).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-</script>
 
 
 </body>

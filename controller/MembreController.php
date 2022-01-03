@@ -8,9 +8,7 @@ class MembreController{
     private $model;
 
     public function __construct($con){
-        session_start();
         $this->model= new MembreModel($con);
-
         try{
             if(!isset($_REQUEST['action'])){
                 $action=null;
@@ -58,7 +56,7 @@ class MembreController{
 
     public function Reinit(){
         $listeDeListe = $this->model->affichage_liste_prive();
-        require ("vue/pagemembre.php");
+        require("vue/pagemembre.php");
     }
 
     public function ajouterListe(){
