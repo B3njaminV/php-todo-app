@@ -39,10 +39,6 @@ class MembreController{
                     $this->checkTache();
                     break;
 
-                case "affichage";
-                    $this->affichage();
-                    break;
-
                 case "deconnexion";
                     $this->deconnexion();
                     break;
@@ -60,15 +56,12 @@ class MembreController{
         $listeDeListe = $this->model->affichage_liste_prive();
 
         if ($listeDeListe == NULL){
-            echo "Pas de Liste !!";
+            echo "<script type='text/javascript'>alert('Vous n\'avez aucune liste à votre actif');</script>";
             require("vue/pagemembre.php");
         }else{
+            $this->model->affichage_tache_prive($_POST['idListeL']);
             require("vue/pagemembre.php");
         }
-    }
-
-    public function deconnexion(){
-        $this->model->deconnexion();
     }
 
     public function ajouterListe(){
@@ -76,25 +69,6 @@ class MembreController{
             if($_POST['titre'] != ""){
                 $titre = $_POST['titre'];
                 $this->model->ajout_liste_prive($titre);
-                $this->Reinit();
-            }
-        }
-    }
-
-    public function checkTache(){
-        $this->model->check_prive();
-    }
-
-    public function affichageTache(){
-        $listeDeTache = $this->model->affichage_tache_prive($_REQUEST['idListe']);
-    }
-
-    public function ajouterTache(){
-        if(ISSET($_POST['add'])){
-            if($_POST['texte'] != ""){
-                $texte = $_POST['texte'];
-                $idListeParent = $_POST['idListe'];
-                $this->model->ajout_tache_prive($texte, $idListeParent);
                 $this->Reinit();
             }
         }
@@ -108,12 +82,38 @@ class MembreController{
                 $this->Reinit();
             }
         }
+    }
 
+    public function ajouterTache(){
+        if(ISSET($_POST['add'])){
+            if($_POST['texte'] != ""){
+                $texte = $_POST['texte'];
+                $idListeParent = $_POST['idListe'];
+                $this->model->ajout_tache_prive($texte, $idListeParent);
+                $this->Reinit();
+            }
+        }
     }
 
     public function supprimerTache(){
-        $this->model->supprimer_tache_prive();
+        if(ISSET($_POST['remove'])){
+            $idTe = $_POST['idTacheTe'];
+            $this->model->supprimer_tache_prive($idTe);
+            $this->Reinit();
+        }
     }
 
+    public function checkTache(){
+        if(ISSET($_POST['check'])){
+            $idT = $_POST['idTacheT'];
+            $this->model->check_prive($idT);
+            $this->Reinit();
+        }
+    }
+
+    public function deconnexion(){
+        $this->model->deconnexion();
+        $newF= new FrontController();
+    }
 }
 ?>

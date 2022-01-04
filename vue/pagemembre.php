@@ -41,9 +41,6 @@
     </center>
 </nav>
 
-<?php
-
-?>
 <div id="Prive" class="tabcontent">
     <center>
         <form method="POST" class="form-inline" action="">
@@ -58,7 +55,6 @@
     <div class="col-md-4"></div>
     <?php
         foreach ($listeDeListe as $l){
-
         ?>
         <div class="col-md-6 well">
             <h3 class="text-primary">
@@ -94,29 +90,38 @@
                 <tbody>
 
                 <?php
-
-                Foreach ($listeDeTache as $t1){
+                $gateway=new TacheGateway($con);
+                $listeDeTache=$gateway->findAllTask($l->getId());
+                Foreach ($listeDeTache as $t){
                     ?>
                     <tr>
                         <td>
                             <?php
-                            if($t1->getStatus() == "OK"){
+                            if($t->getStatus() == "OK"){
                                 echo
-                                    '<strike>'.$t1->getTexte().'</strike>';
+                                    '<strike>'.$t->getTexte().'</strike>';
                             }else{
-                                echo $t1->getTexte();
+                                echo $t->getTexte();
                             }
                             ?>
                         </td>
                         <td colspan="2">
                             <center>
                                 <?php
-                                if($t1->getStatus() != "OK"){
-                                    echo
-                                        '<a href="../action/check_prive.php?id='.$t1->getId().'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
-                                }
-                                ?>
-                                <a href="../action/supprimer_tache_prive.php?id=<?php echo $t1->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                if($t->getStatus() != "OK"){
+                                    ?>
+                                <form method="POST" class="btn btn-success" action="">
+                                    <input type="hidden" name="idTacheT" value="<?php echo $t->getId()?>">
+                                    <input type="hidden" name="action" value="checkTache">
+                                    <button name="check" class="glyphicon glyphicon-check"></button>
+                                </form> |
+                                <?php } ?>
+
+                                <form method="POST" class="btn btn-danger" action="">
+                                    <input type="hidden" name="idTacheTe" value="<?php echo $t->getId()?>">
+                                    <input type="hidden" name="action" value="supprimerTache">
+                                    <button name="remove" class="glyphicon glyphicon-remove"></button>
+                                </form>
                             </center>
                         </td>
                     </tr>
