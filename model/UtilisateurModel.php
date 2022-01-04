@@ -15,30 +15,29 @@ class UtilisateurModel{
     }
 
     public function affichage_liste_public(){
-        $tab=$this->gatewayListe->findAllPrivateList();
-        return $tab;
+        $tab2=$this->gatewayListe->findAllPublicList();
+        return $tab2;
     }
 
-    public function affichage_tache_prive($ide){
+    public function affichage_tache_public($ide){
         $tab=$this->gatewayTache->findAllTask($ide);
         return $tab;
     }
 
-    public function ajout_liste_prive($titre){
-        $this->gatewayListe->addPrivateList($titre);
+    public function ajout_liste_public($titre){
+        $this->gatewayListe->addPublicList($titre);
     }
 
-    public function ajout_tache_prive($texte, $idListeParent){
+    public function ajout_tache_public($texte, $idListeParent){
         $this->gatewayTache->addTask($texte, $idListeParent);
     }
 
-    public function supprimer_tache_prive($ide){
+    public function supprimer_tache_public($ide){
         $this->gatewayTache->delTask($ide);
     }
-    public function supprimer_liste_prive($id){
+    public function supprimer_liste_public($id){
         $this->gatewayListe->delList($id);
     }
-
 
     public function check_prive($id){
         $this->gatewayTache->checkTask($id);

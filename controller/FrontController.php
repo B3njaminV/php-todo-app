@@ -16,6 +16,12 @@ class FrontController{
             $isMembre = new MembreModel();
             $isUser = new UtilisateurModel();
             if ($_REQUEST['actionM'] === "connexion") {
+                if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
+                {
+                    $controllerUser2= new UtilisateurController($isUser);
+                    die;
+                }
+
                 if ($isMembre->isMembre() == NULL) {
                     require("vue/connexion.php");
                 } else {
@@ -33,11 +39,6 @@ class FrontController{
                 } else {
                     $controllerMembre2 = new MembreController($isMembre);
                 }
-            }
-
-            if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
-            {
-                $controllerUser2= new UtilisateurController($isUser);
             }
         } catch (Exception $e) {
             $dVueErreur[] = "Erreur : " . $e->getMessage() . "<br/>";

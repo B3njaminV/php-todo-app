@@ -75,6 +75,7 @@ class MembreModel{
         $this->gatewayListe->delList($id);
     }
 
+
     public function check_prive($id){
         $this->gatewayTache->checkTask($id);
     }

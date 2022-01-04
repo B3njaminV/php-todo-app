@@ -54,21 +54,16 @@ class UtilisateurController{
     }
 
     public function Reinit(){
-        $listeDeListe = $this->model->affichage_liste_public();
-        if ($listeDeListe == NULL){
-            echo "<script type='text/javascript'>alert('Vous n\'avez aucune liste à votre actif');</script>";
-            require("vue/pagevisiteur.php");
-        }else{
-            $this->model->affichage_tache_prive($_POST['idListeL']);
-            require("vue/pagevisiteur.php");
-        }
+        $listeDeListePublic = $this->model->affichage_liste_public();
+        require("vue/pagevisiteur.php");
+
     }
 
     public function ajouterListe(){
         if(ISSET($_POST['add'])){
             if($_POST['titre'] != ""){
                 $titre = $_POST['titre'];
-                $this->model->ajout_liste_prive($titre);
+                $this->model->ajout_liste_public($titre);
                 $this->Reinit();
             }
         }
@@ -78,7 +73,7 @@ class UtilisateurController{
         if(ISSET($_POST['remove'])){
             if($_POST['idListeL'] != ""){
                 $id = $_POST['idListeL'];
-                $this->model->supprimer_liste_prive($id);
+                $this->model->supprimer_liste_public($id);
                 $this->Reinit();
             }
         }
@@ -89,7 +84,7 @@ class UtilisateurController{
             if($_POST['texte'] != ""){
                 $texte = $_POST['texte'];
                 $idListeParent = $_POST['idListe'];
-                $this->model->ajout_tache_prive($texte, $idListeParent);
+                $this->model->ajout_tache_public($texte, $idListeParent);
                 $this->Reinit();
             }
         }
@@ -98,7 +93,7 @@ class UtilisateurController{
     public function supprimerTache(){
         if(ISSET($_POST['remove'])){
             $idTe = $_POST['idTacheTe'];
-            $this->model->supprimer_tache_prive($idTe);
+            $this->model->supprimer_tache_public($idTe);
             $this->Reinit();
         }
     }
@@ -112,6 +107,7 @@ class UtilisateurController{
     }
 
     public function connexion(){
+        $this->model->deconnexion();
         $newF= new FrontController();
     }
 }
