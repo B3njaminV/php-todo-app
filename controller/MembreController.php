@@ -4,8 +4,8 @@ namespace controller;
 class MembreController{
 
     private $model;
-
     public function __construct($modelMembre){
+
         $this->model= $modelMembre;
         try{
             if(!isset($_REQUEST['action'])){
@@ -54,6 +54,7 @@ class MembreController{
 
     public function Reinit(){
         $listeDeListe = $this->model->affichage_liste_prive();
+        $listeDeTache = $this->model->affichage_tache_prive($_REQUEST['idListe']);
         require("vue/pagemembre.php");
     }
 
@@ -67,16 +68,19 @@ class MembreController{
         }
     }
 
-    public function affichage(){
-        $this->model->affichage_liste_prive();
-    }
-
     public function checkTache(){
         $this->model->check_prive();
     }
 
     public function ajouterTache(){
-        $this->model->ajout_tache_prive();
+        if(ISSET($_POST['add'])){
+            if($_POST['texte'] != ""){
+                $texte = $_POST['texte'];
+                $idListeParent = $_POST['idListe'];
+                $this->model->ajout_tache_prive($texte, $idListeParent);
+                $this->Reinit();
+            }
+        }
     }
 
     public function supprimerListe(){

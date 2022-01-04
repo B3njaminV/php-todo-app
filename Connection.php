@@ -27,8 +27,10 @@ class connection extends PDO {
 $user= 'root';
 $pass='';
 $dsn='mysql:host=localhost;dbname=bdd';
+$con=NULL;
 try{
     $con=new connection($dsn,$user,$pass);
+    var_dump($con);
 }
 catch( PDOException $Exception ) {
     echo 'ERREUR DE CONNEXION A LA BDD !';

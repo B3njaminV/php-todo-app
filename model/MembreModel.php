@@ -4,23 +4,18 @@ use ListeGateway;
 use TacheGateway;
 use UtilisateurGateway;
 
-require "gateway/ListeGateway.php";
-require "gateway/TacheGateway.php";
-require "gateway/UtilisateurGateway.php";
-
 class MembreModel{
 
     public $gatewayListe;
     public $gatewayTache;
 
     public function __construct(){
-        $this->gatewayListe=new ListeGateway($con);
-        $this->gatewayTache=new TacheGateway($con);
+        $this->gatewayListe=new ListeGateway();
+        $this->gatewayTache=new TacheGateway();
     }
 
     public function connexion($name, $password) {
-
-        $gateway=new UtilisateurGateway($con);
+        $gateway=new UtilisateurGateway();
         $result=$gateway->findOneUser($name);
 
         if($result) {
@@ -37,7 +32,7 @@ class MembreModel{
     public function isMembre() {
         if(isset($_SESSION['role']) && isset($_SESSION['id'])) {
             $role = $_SESSION['role'];
-            $id = $_SESSION['login'];
+            $id = $_SESSION['id'];
             return 1;
         } else {
             return NULL;
@@ -55,18 +50,17 @@ class MembreModel{
         return $tab;
     }
 
+    public function affichage_tache_prive($ide){
+        $tab=$this->gatewayTache->findAllTask($ide);
+        return $tab;
+    }
+
     public function ajout_liste_prive($titre){
         $this->gatewayListe->addPrivateList($titre);
     }
 
-    public function ajout_tache_prive(){
-        if(ISSET($_POST['add'])){
-            if($_POST['texte'] != ""){
-                $texte = $_POST['texte'];
-                $idListeParent = $_POST['idListe'];
-                $this->gatewayTache->addTask($texte, $idListeParent);
-            }
-        }
+    public function ajout_tache_prive($texte, $idListeParent){
+        $this->gatewayTache->addTask($texte, $idListeParent);
     }
 
     public function check_prive(){

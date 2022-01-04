@@ -73,9 +73,10 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <center>
-                    <form method="POST" class="form-inline" action="../action/ajout_tache_prive.php">
+                    <form method="POST" class="form-inline" action="">
                         <input type="hidden" name="idListe" value="<?php echo $l->getId()?>">
                         <input type="text" class="form-control" name="texte" required/>
+                        <input type="hidden" name="action" value="ajouterTache">
                         <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
                     </form>
                 </center>
@@ -89,11 +90,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                $gateway4=new TacheGateway($con);
-                $tabTache=$gateway4->findAllTask($l1->getId());
 
-                Foreach ($tabTache as $t1){
+                <?php
+
+                Foreach ($listeDeTache as $t1){
                     ?>
                     <tr>
                         <td>

@@ -3,17 +3,15 @@
 namespace model;
 use ListeGateway;
 use TacheGateway;
-require "gateway/ListeGateway.php";
-require "gateway/TacheGateway.php";
 
 class UtilisateurModel{
 
     public $gatewayListe;
     public $gatewayTache;
 
-    public function __construct($con){
-        $this->gatewayListe=new ListeGateway($con);
-        $this->gatewayTache=new TacheGateway($con);
+    public function __construct(){
+        $this->gatewayListe=new ListeGateway();
+        $this->gatewayTache=new TacheGateway();
     }
 
     public function ajout_liste_public(){

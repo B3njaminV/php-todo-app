@@ -3,40 +3,33 @@
 namespace controller;
 use Exception;
 use model\MembreModel;
-require "../metier/Connection.php";
-require "../controller/MembreController.php";
-require "../controller/UtilisateurController.php";
 
 class FrontController{
 
     public function __construct()
     {
-        session_start();
         $dVueErreur=array();
-        
+        session_start();
         try {
+
             $isMembre = new MembreModel();
-
-            if(!empty($_REQUEST['action'])) {
-                $action = $_REQUEST['action'];
-            }
-
-            if ($action === "connexion") {
-                if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['member'])) {
-                    if (!empty($_REQUEST['user_name']) && !empty($_REQUEST['password'])) {
-                        $isMembre->connexion($_REQUEST['user_name'], $_REQUEST['password']);
-                    }
-                }
-
+            if ($_REQUEST['actionM'] === "connexion") {
                 if ($isMembre->isMembre() == NULL) {
                     require("vue/connexion.php");
-                }else {
-                    $controllerMembre= new MembreController($isMembre);
+                } else {
+                    $controllerMembre = new MembreController($isMembre);
                 }
 
-                if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
-                {
-                    $controllerUser= new UtilisateurController($con);
+                if (!empty($_REQUEST['user_name']) && !empty($_REQUEST['password'])) {
+                    $isMembre->connexion($_REQUEST['user_name'], $_REQUEST['password']);
+                }else{
+                    $controllerUser= new UtilisateurController($isMembre);
+                }
+            }else{
+                if ($isMembre->isMembre() == NULL) {
+                    $controllerUser2= new UtilisateurController($isMembre);
+                } else {
+                    $controllerMembre2 = new MembreController($isMembre);
                 }
             }
         } catch (Exception $e) {

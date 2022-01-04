@@ -42,9 +42,8 @@
 
 			<input id="text" type="text" name="user_name" placeholder="Pseudo"><br><br>
 			<input id="text" type="password" name="password" placeholder="Mot de Passe"<br><br><br><br>
-            <input type="hidden" name="action" value="connecter">
-            <input id="button" name="member" type="submit" value="Login">
-            <input id="button" name="user" type="submit" value="Simple visiteur">
+            <input type="hidden" name="actionM" value="connexion">
+            <input id="button" type="submit" value="Login">
         </form>
 	</div>
 </body>
