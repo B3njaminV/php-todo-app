@@ -9,12 +9,10 @@
     <center>
         <div class="container-fluid">
             <a class="navbar-brand">PROJET</a>
-            <?php
-            include("../vue/deconnexion.php")
-            ?>
             <form method="post">
-                <div class="tab">
-                    <button id="button" name="deco" class="tablinks" type="submit">Déconnexion</button>
+                <div class="tab" width="15px">
+                    <button id="button" name="deco" class="tablinks" type="submit">Connexion</button>
+                    <input type="hidden" name="action" value="connexion">
                 </div>
             </form>
         </div>
@@ -32,15 +30,7 @@
 <br/><br/><br/>
 <div class="col-md-4"></div>
 <?php
-require('../metier/Connection.php');
-require("../gateway/TacheGateway.php");
-require("../metier/Tache.php");
-require("../gateway/ListeGateway.php");
-require("../metier/Liste.php");
-$gateway10 = new ListeGateway($con);
-$tabListe = $gateway10->findAllPublicList();
-
-foreach ($tabListe as $l) {
+    foreach ($listeDeListe as $l) {
     ?>
     <div class="col-md-6 well">
         <h3 class="text-primary">

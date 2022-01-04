@@ -54,7 +54,7 @@ class MembreController{
 
     public function Reinit(){
         $listeDeListe = $this->model->affichage_liste_prive();
-
+        $listeDeListePublic = $this->model->affichage_liste_public();
         if ($listeDeListe == NULL){
             echo "<script type='text/javascript'>alert('Vous n\'avez aucune liste à votre actif');</script>";
             require("vue/pagemembre.php");

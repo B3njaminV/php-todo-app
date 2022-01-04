@@ -3,6 +3,7 @@
 namespace controller;
 use Exception;
 use model\MembreModel;
+use model\UtilisateurModel;
 
 class FrontController{
 
@@ -13,6 +14,7 @@ class FrontController{
         try {
 
             $isMembre = new MembreModel();
+            $isUser = new UtilisateurModel();
             if ($_REQUEST['actionM'] === "connexion") {
                 if ($isMembre->isMembre() == NULL) {
                     require("vue/connexion.php");
@@ -23,7 +25,7 @@ class FrontController{
                 if (!empty($_REQUEST['user_name']) && !empty($_REQUEST['password'])) {
                     $isMembre->connexion($_REQUEST['user_name'], $_REQUEST['password']);
                 }else{
-                    $controllerUser= new UtilisateurController($isMembre);
+                    $controllerUser= new UtilisateurController($isUser);
                 }
             }else{
                 if ($isMembre->isMembre() == NULL) {
@@ -31,6 +33,11 @@ class FrontController{
                 } else {
                     $controllerMembre2 = new MembreController($isMembre);
                 }
+            }
+
+            if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
+            {
+                $controllerUser2= new UtilisateurController($isUser);
             }
         } catch (Exception $e) {
             $dVueErreur[] = "Erreur : " . $e->getMessage() . "<br/>";

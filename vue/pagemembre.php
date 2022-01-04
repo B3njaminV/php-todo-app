@@ -90,7 +90,7 @@
                 <tbody>
 
                 <?php
-                $gateway=new TacheGateway($con);
+                $gateway=new TacheGateway();
                 $listeDeTache=$gateway->findAllTask($l->getId());
                 Foreach ($listeDeTache as $t){
                     ?>
@@ -141,24 +141,27 @@
 
     <div class="col-md-4"></div>
     <?php
-    $tabListe=$gateway->findAllPublicList();
-    Foreach ($tabListe as $l){
+    Foreach ($listeDeListePublic as $lp){
         ?>
         <div class="col-md-6 well">
             <h3 class="text-primary">
                 <?php
-                echo $l->getTitre();
+                echo $lp->getTitre();
                 ?>
-
-                <a href="../action/supprimer_liste_public.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                <form method="POST" class="btn btn-danger" action="">
+                    <input type="hidden" name="idListeL" value="<?php echo $lp->getId()?>">
+                    <input type="hidden" name="action" value="supprimerListe">
+                    <button name="remove" class="glyphicon glyphicon-remove"></button>
+                </form>
             </h3>
             <hr style="border-top:1px dotted #ccc;"/>
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <center>
-                    <form method="POST" class="form-inline" action="../action/ajout_tache_prive.php">
-                        <input type="hidden" name="idListe" value="<?php echo $l->getId()?>">
+                    <form method="POST" class="form-inline" action="">
+                        <input type="hidden" name="idListe" value="<?php echo $lp->getId()?>">
                         <input type="text" class="form-control" name="texte" required/>
+                        <input type="hidden" name="action" value="ajouterTache">
                         <button class="btn btn-primary form-control" name="add">Ajouter Tache</button>
                     </form>
                 </center>
@@ -173,9 +176,8 @@
                 </thead>
                 <tbody>
                 <?php
-                $gateway=new TacheGateway($con);
-                $tabTache=$gateway->findAllTask($l->getId());
-
+                $gateway = new TacheGateway();
+                $tabTache=$gateway->findAllTask($lp->getId());
                 Foreach ($tabTache as $t){
                     ?>
                     <tr>
@@ -193,11 +195,18 @@
                             <center>
                                 <?php
                                 if($t->getStatus() != "OK"){
-                                    echo
-                                        '<a href="../action/check_prive.php?id='.$t->getId().'" class="btn btn-success"><span class="glyphicon glyphicon-check"></span></a> |';
-                                }
-                                ?>
-                                <a href="../action/supprimer_tache_prive.php?id=<?php echo $t->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                    ?>
+                                    <form method="POST" class="btn btn-success" action="">
+                                        <input type="hidden" name="idTacheT" value="<?php echo $t->getId()?>">
+                                        <input type="hidden" name="action" value="checkTache">
+                                        <button name="check" class="glyphicon glyphicon-check"></button>
+                                    </form> |
+                                <?php } ?>
+                                <form method="POST" class="btn btn-danger" action="">
+                                    <input type="hidden" name="idTacheTe" value="<?php echo $t->getId()?>">
+                                    <input type="hidden" name="action" value="supprimerTache">
+                                    <button name="remove" class="glyphicon glyphicon-remove"></button>
+                                </form>
                             </center>
                         </td>
                     </tr>

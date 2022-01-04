@@ -50,6 +50,11 @@ class MembreModel{
         return $tab;
     }
 
+    public function affichage_liste_public(){
+        $tab2=$this->gatewayListe->findAllPublicList();
+        return $tab2;
+    }
+
     public function affichage_tache_prive($ide){
         $tab=$this->gatewayTache->findAllTask($ide);
         return $tab;
@@ -69,7 +74,6 @@ class MembreModel{
     public function supprimer_liste_prive($id){
         $this->gatewayListe->delList($id);
     }
-
 
     public function check_prive($id){
         $this->gatewayTache->checkTask($id);

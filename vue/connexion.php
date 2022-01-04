@@ -44,6 +44,7 @@
 			<input id="text" type="password" name="password" placeholder="Mot de Passe"<br><br><br><br>
             <input type="hidden" name="actionM" value="connexion">
             <input id="button" type="submit" value="Login">
+            <input id="button" name="user" type="submit" value="Simple visiteur">
         </form>
 	</div>
 </body>
