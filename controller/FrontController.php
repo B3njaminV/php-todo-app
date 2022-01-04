@@ -27,7 +27,7 @@ class FrontController{
                 }
             }else{
                 if ($isMembre->isMembre() == NULL) {
-                    $controllerUser2= new UtilisateurController($isMembre);
+                    require("vue/connexion.php");
                 } else {
                     $controllerMembre2 = new MembreController($isMembre);
                 }

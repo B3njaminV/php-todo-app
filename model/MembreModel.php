@@ -63,17 +63,15 @@ class MembreModel{
         $this->gatewayTache->addTask($texte, $idListeParent);
     }
 
+    public function supprimer_liste_prive($id){
+        $this->gatewayListe->delList($id);
+    }
+
+
     public function check_prive(){
         if($_GET['id'] != ""){
             $id = $_GET['id'];
             $this->gatewayTache->checkTask($id);
-        }
-    }
-
-    public function supprimer_liste_prive(){
-        if($_GET['id']){
-            $id = $_GET['id'];
-            $this->gatewayListe->delList($id);
         }
     }
 

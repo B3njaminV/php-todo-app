@@ -43,6 +43,10 @@ class MembreController{
                     $this->affichage();
                     break;
 
+                case "deconnexion";
+                    $this->deconnexion();
+                    break;
+
                 default;
                     echo "Erreur";
                     break;
@@ -54,8 +58,17 @@ class MembreController{
 
     public function Reinit(){
         $listeDeListe = $this->model->affichage_liste_prive();
-        $listeDeTache = $this->model->affichage_tache_prive($_REQUEST['idListe']);
-        require("vue/pagemembre.php");
+
+        if ($listeDeListe == NULL){
+            echo "Pas de Liste !!";
+            require("vue/pagemembre.php");
+        }else{
+            require("vue/pagemembre.php");
+        }
+    }
+
+    public function deconnexion(){
+        $this->model->deconnexion();
     }
 
     public function ajouterListe(){
@@ -72,6 +85,10 @@ class MembreController{
         $this->model->check_prive();
     }
 
+    public function affichageTache(){
+        $listeDeTache = $this->model->affichage_tache_prive($_REQUEST['idListe']);
+    }
+
     public function ajouterTache(){
         if(ISSET($_POST['add'])){
             if($_POST['texte'] != ""){
@@ -84,7 +101,14 @@ class MembreController{
     }
 
     public function supprimerListe(){
-        $this->model->supprimer_liste_prive();
+        if(ISSET($_POST['remove'])){
+            if($_POST['idListeL'] != ""){
+                $id = $_POST['idListeL'];
+                $this->model->supprimer_liste_prive($id);
+                $this->Reinit();
+            }
+        }
+
     }
 
     public function supprimerTache(){

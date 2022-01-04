@@ -25,12 +25,10 @@
 <nav class="navbar navbar-default">
     <center>
         <div class="container-fluid">
-            <?php
-            include("vue/deconnexion.php")
-            ?>
             <form method="post">
                 <div class="tab" width="15px">
                     <button id="button" name="deco" class="tablinks" type="submit">Déconnexion</button>
+                    <input type="hidden" name="action" value="deconnexion">
                 </div>
             </form>
             <a class="navbar-brand">PROJET</a>
@@ -67,7 +65,11 @@
                 <?php
                 echo $l->getTitre();
                 ?>
-                <a href="?supprimer_liste_prive.php?id=<?php echo $l->getId()?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                <form method="POST" class="btn btn-danger" action="">
+                    <input type="hidden" name="idListeL" value="<?php echo $l->getId()?>">
+                    <input type="hidden" name="action" value="supprimerListe">
+                    <button name="remove" class="glyphicon glyphicon-remove"></button>
+                </form>
             </h3>
             <hr style="border-top:1px dotted #ccc;"/>
             <div class="col-md-2"></div>

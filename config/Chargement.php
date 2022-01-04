@@ -44,7 +44,6 @@ class Autoload
             if (file_exists($file))
             {
                 include $file;
-                echo "CHECK $filename";
             }
         }
 
