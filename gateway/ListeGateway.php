@@ -17,6 +17,7 @@ class ListeGateway
         Foreach ($results as $fetch){
             $this->tabListe[]=new Liste($fetch['id'], $fetch['titre'], $fetch['status']);
         }
+
         return $this->tabListe;
     }
 

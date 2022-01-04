@@ -1,8 +1,4 @@
 <?php
-require('../metier/Connection.php');
-require("../gateway/TacheGateway.php");
-require("../metier/Tache.php");
-
 if(ISSET($_POST['add'])){
     if($_POST['texte'] != ""){
         $texte = $_POST['texte'];

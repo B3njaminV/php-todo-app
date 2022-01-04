@@ -60,6 +60,7 @@
     <div class="col-md-4"></div>
     <?php
         foreach ($listeDeListe as $l){
+
         ?>
         <div class="col-md-6 well">
             <h3 class="text-primary">

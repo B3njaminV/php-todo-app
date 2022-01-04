@@ -1,3 +1,3 @@
 <?php
-require "controller/FrontController.php";
+    require "controller/FrontController.php";
 ?>
