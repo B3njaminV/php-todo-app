@@ -6,13 +6,14 @@ use UtilisateurGateway;
 
 require "gateway/ListeGateway.php";
 require "gateway/TacheGateway.php";
+require "gateway/UtilisateurGateway.php";
 
 class MembreModel{
 
     public $gatewayListe;
     public $gatewayTache;
 
-    public function __construct($con){
+    public function __construct(){
         $this->gatewayListe=new ListeGateway($con);
         $this->gatewayTache=new TacheGateway($con);
     }
@@ -28,7 +29,7 @@ class MembreModel{
                 $_SESSION['id']=$result->getUserId();
                 die;
             }else{
-                echo "WRONG PASSWORD !";
+                echo "MAUVAIS MOT DE PASSE !";
             }
         }
     }
@@ -64,7 +65,6 @@ class MembreModel{
                 $texte = $_POST['texte'];
                 $idListeParent = $_POST['idListe'];
                 $this->gatewayTache->addTask($texte, $idListeParent);
-                header('location:../vue/pagemembre.php');
             }
         }
     }
@@ -73,7 +73,6 @@ class MembreModel{
         if($_GET['id'] != ""){
             $id = $_GET['id'];
             $this->gatewayTache->checkTask($id);
-            header('location:../vue/pagemembre.php');
         }
     }
 
@@ -81,7 +80,6 @@ class MembreModel{
         if($_GET['id']){
             $id = $_GET['id'];
             $this->gatewayListe->delList($id);
-            header("location:../vue/pagemembre.php");
         }
     }
 
@@ -89,7 +87,6 @@ class MembreModel{
         if($_GET['id']){
             $id = $_GET['id'];
             $this->gatewayTache->delTask($id);
-            header("location:../vue/pagemembre.php");
         }
     }
 

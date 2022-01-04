@@ -1,12 +1,11 @@
 <?php
 
 namespace controller;
-
-require "metier/Connection.php";
+use Exception;
 use model\MembreModel;
-require "model/MembreModel.php";
-require "MembreController.php";
-require "UtilisateurController.php";
+require "../metier/Connection.php";
+require "../controller/MembreController.php";
+require "../controller/UtilisateurController.php";
 
 class FrontController{
 
@@ -16,7 +15,7 @@ class FrontController{
         $dVueErreur=array();
         
         try {
-            $isMembre = new MembreModel($con);
+            $isMembre = new MembreModel();
 
             if(!empty($_REQUEST['action'])) {
                 $action = $_REQUEST['action'];
@@ -32,14 +31,13 @@ class FrontController{
                 if ($isMembre->isMembre() == NULL) {
                     require("vue/connexion.php");
                 }else {
-                    $controllerMembre= new MembreController($con, $isMembre);
+                    $controllerMembre= new MembreController($isMembre);
                 }
 
                 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['user']))
                 {
                     $controllerUser= new UtilisateurController($con);
                 }
-
             }
         } catch (Exception $e) {
             $dVueErreur[] = "Erreur : " . $e->getMessage() . "<br/>";

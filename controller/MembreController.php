@@ -5,7 +5,7 @@ class MembreController{
 
     private $model;
 
-    public function __construct($con, $modelMembre){
+    public function __construct($modelMembre){
         $this->model= $modelMembre;
         try{
             if(!isset($_REQUEST['action'])){

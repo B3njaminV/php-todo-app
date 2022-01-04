@@ -31,7 +31,6 @@ class UtilisateurModel{
                 $texte = $_POST['texte'];
                 $idListeParent = $_POST['idListe'];
                 $this->gatewayTache->addTask($texte, $idListeParent);
-                header('location:../vue/pagevisiteur.php');
             }
         }
     }
@@ -40,7 +39,6 @@ class UtilisateurModel{
         if($_GET['id'] != ""){
             $id = $_GET['id'];
             $this->gatewayTache->checkTask($id);
-            header('location:../vue/pagevisiteur.php');
         }
     }
 
@@ -48,7 +46,6 @@ class UtilisateurModel{
         if($_GET['id']){
             $id = $_GET['id'];
             $this->gatewayListe->delList($id);
-            header('location:../vue/pagevisiteur.php');
         }
     }
 
@@ -56,7 +53,6 @@ class UtilisateurModel{
         if($_GET['id']){
             $id = $_GET['id'];
             $this->gatewayTache->delTask($id);
-            header('location:../vue/pagevisiteur.php');
         }
     }
 
