@@ -1,6 +1,9 @@
 <?php
 namespace controller;
 
+use Nettoyage;
+require "config/Nettoyage.php";
+
 class MembreController{
 
     private $model;
@@ -68,8 +71,10 @@ class MembreController{
         if(ISSET($_POST['add'])){
             if($_POST['titre'] != ""){
                 $titre = $_POST['titre'];
-                $this->model->ajout_liste_prive($titre);
-                $this->Reinit();
+                if (Nettoyage::securite($titre) != 1){
+                    $this->model->ajout_liste_prive($titre);
+                    $this->Reinit();
+                }
             }
         }
     }
@@ -89,8 +94,10 @@ class MembreController{
             if($_POST['texte'] != ""){
                 $texte = $_POST['texte'];
                 $idListeParent = $_POST['idListe'];
-                $this->model->ajout_tache_prive($texte, $idListeParent);
-                $this->Reinit();
+                if (Nettoyage::securite($texte) != 1) {
+                    $this->model->ajout_tache_prive($texte, $idListeParent);
+                    $this->Reinit();
+                }
             }
         }
     }

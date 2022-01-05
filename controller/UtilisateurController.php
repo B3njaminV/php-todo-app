@@ -1,5 +1,7 @@
 <?php
 namespace controller;
+use Nettoyage;
+require "config/Nettoyage.php";
 
 class UtilisateurController{
 
@@ -63,8 +65,10 @@ class UtilisateurController{
         if(ISSET($_POST['add'])){
             if($_POST['titre'] != ""){
                 $titre = $_POST['titre'];
-                $this->model->ajout_liste_public($titre);
-                $this->Reinit();
+                if (Nettoyage::securite($titre) != 1) {
+                    $this->model->ajout_liste_public($titre);
+                    $this->Reinit();
+                }
             }
         }
     }
@@ -84,8 +88,10 @@ class UtilisateurController{
             if($_POST['texte'] != ""){
                 $texte = $_POST['texte'];
                 $idListeParent = $_POST['idListe'];
-                $this->model->ajout_tache_public($texte, $idListeParent);
-                $this->Reinit();
+                if (Nettoyage::securite($texte) != 1) {
+                    $this->model->ajout_tache_public($texte, $idListeParent);
+                    $this->Reinit();
+                }
             }
         }
     }
