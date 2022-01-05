@@ -74,6 +74,9 @@ class MembreController{
                 if (Nettoyage::securite($titre) != 1){
                     $this->model->ajout_liste_prive($titre);
                     $this->Reinit();
+                }else{
+                    $this->deconnexion();
+                    echo "<script type='text/javascript'>alert('Tentative d\'injection !!!');</script>";
                 }
             }
         }
@@ -97,6 +100,9 @@ class MembreController{
                 if (Nettoyage::securite($texte) != 1) {
                     $this->model->ajout_tache_prive($texte, $idListeParent);
                     $this->Reinit();
+                }else{
+                    $this->deconnexion();
+                    echo "<script type='text/javascript'>alert('Tentative d\'injection !!!');</script>";
                 }
             }
         }

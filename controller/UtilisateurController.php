@@ -61,6 +61,11 @@ class UtilisateurController{
 
     }
 
+    public function connexion(){
+        $this->model->deconnexion();
+        $newF= new FrontController();
+    }
+
     public function ajouterListe(){
         if(ISSET($_POST['add'])){
             if($_POST['titre'] != ""){
@@ -68,6 +73,9 @@ class UtilisateurController{
                 if (Nettoyage::securite($titre) != 1) {
                     $this->model->ajout_liste_public($titre);
                     $this->Reinit();
+                }else{
+                    $this->connexion();
+                    echo "<script type='text/javascript'>alert('Tentative d\'injection !!!');</script>";
                 }
             }
         }
@@ -91,6 +99,9 @@ class UtilisateurController{
                 if (Nettoyage::securite($texte) != 1) {
                     $this->model->ajout_tache_public($texte, $idListeParent);
                     $this->Reinit();
+                }else{
+                    $this->connexion();
+                    echo "<script type='text/javascript'>alert('Tentative d\'injection !!!');</script>";
                 }
             }
         }
@@ -110,11 +121,6 @@ class UtilisateurController{
             $this->model->check_prive($idT);
             $this->Reinit();
         }
-    }
-
-    public function connexion(){
-        $this->model->deconnexion();
-        $newF= new FrontController();
     }
 }
 ?>
