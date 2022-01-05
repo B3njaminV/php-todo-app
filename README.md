@@ -1,19 +1,17 @@
-<h1 align="center"> Python 👋</h1>
+<h1 align="center"> ToDoList 👋</h1>
 
-> Intelligence Artificielle en Python permettant d'identifier les races de chiens
+> Application web de ToDoList en langage PHP, avec comme support bootstrap et base de donnée SQL.
 
-### 🏠 [Homepage](https://github.com/Benjamin158/python-ia-app)
+### 🏠 [Homepage](https://github.com/Benjamin158/php-todo-app)
 
-### 📌 [Télécharger DataSet](https://drive.google.com/drive/folders/1uf42g9Ztu4GBw5Bk619MqCNjxYxCflOt?usp=sharing)
 
 ## Prérequis
 
-- Python 3.7
-- Scikit-learn 1.0.1
-- Tensorflow 2.7.0
-- Jupyter 1.0.0
-- OpenCV 4.5.6
-- Numpy 1.21.5
+- PHP 7.0~8.1
+- Apache 2
+- MySQL, PHPMyAdmin
+- Editeur PHP
+- Serveur Web
 
 
 ## Auteur
@@ -28,15 +26,12 @@
 * Github: [@VincentMart](https://github.com/VincentMart)
 
 
-## 🤝 Librairie
+## 🤝 Base de donnée SQL
 
-- os > gère le parcours de fichiers
-- OpenCV > permet de traiter nos images
-- numpy > manipulation de matrice
-- pandas > manipulation / analyse de nos données
-- sklearn > normalisation de nos données / apprentissage automatique
-- tensorflow > création de modèles (séquentiel) / compilation de modèle > surapprentissage
-- matplotlib > visualisation de nos résultats sous forme de graphiques
+  Vous pourrez trouver notre Base de Donnée dans le fichier `localhost.sql` et l'importer sur votre prore Base de donnée
+    
+
+
 
 
 ## 📝 License
@@ -47,13 +42,13 @@ Copyright © 2021.
 ## 🛠 Languages
 
 <p> 
-    <a href="https://jupyter.org/" target="_blank"> 
-        <img src="https://www.vectorlogo.zone/logos/jupyter/jupyter-icon.svg" alt="jupyter" width="40" height="40"/> 
+    <a href="https://www.php.net/" target="_blank"> 
+        <img src="https://www.vectorlogo.zone/logos/php/php-icon.svg" alt="php" width="60" height="60"/> 
     </a> 
-    <a href="https://www.python.org/" target="_blank"> 
-        <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="python" width="40" height="40"/>
-    </a>
-    <a href="https://git-scm.com/" target="_blank"> 
-        <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/>
+	<a href="https://www.phpmyadmin.net/" target="_blank"> 
+        <img src="https://www.vectorlogo.zone/logos/phpmyadmin/phpmyadmin-ar21.svg" alt="phpMyAdmin" width="110" height="60"/> 
+    </a> 
+	<a href="https://www.apache.org/" target="_blank"> 
+        <img src="    https://www.vectorlogo.zone/logos/apache/apache-official.svg" alt="apache" width="110" height="60"/> 
     </a>
 </p>
