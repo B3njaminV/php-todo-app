@@ -26,3 +26,16 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 INSERT INTO `utilisateur`VALUES(1234,"benjamin",MD5("root"));
 INSERT INTO `utilisateur`VALUES(12345,"vincent",MD5("root"));
+INSERT INTO `liste` (`id`, `titre`, `status`, `idParent`) VALUES
+                                                              (35, 'Finir le PHP', 'prive', NULL),
+                                                              (36, 'Reviser Partiel', 'public', NULL),
+                                                              (37, 'Finir la POO', 'prive', NULL);
+INSERT INTO `tache` (`id`, `texte`, `status`, `idParent`) VALUES
+                                                              (24, 'Ajouter FrontController', 'OK', '35'),
+                                                              (25, 'Ajouter Controller', 'OK', '35'),
+                                                              (26, 'Modifier la vue', 'NON', '35'),
+                                                              (27, 'PHP', 'OK', '36'),
+                                                              (28, 'POO', 'NON', '36'),
+                                                              (30, 'Système', 'NON', '36'),
+                                                              (32, 'Finir Projet', 'OK', '37'),
+                                                              (34, 'Finir Projet 2', 'NON', '39');
