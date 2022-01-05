@@ -49,6 +49,6 @@ Copyright © 2021.
         <img src="https://www.vectorlogo.zone/logos/phpmyadmin/phpmyadmin-ar21.svg" alt="phpMyAdmin" width="110" height="60"/> 
     </a> 
 	<a href="https://www.apache.org/" target="_blank"> 
-        <img src="    https://www.vectorlogo.zone/logos/apache/apache-official.svg" alt="apache" width="110" height="60"/> 
+        <img src="https://www.vectorlogo.zone/logos/apache/apache-icon.svg" alt="apache" width="110" height="60"/> 
     </a>
 </p>
