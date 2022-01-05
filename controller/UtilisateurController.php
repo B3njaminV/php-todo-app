@@ -74,7 +74,7 @@ class UtilisateurController{
             if($_POST['idListeL'] != ""){
                 $id = $_POST['idListeL'];
                 $this->model->supprimer_liste_public($id);
-                $this->Reinit();
+
             }
         }
     }

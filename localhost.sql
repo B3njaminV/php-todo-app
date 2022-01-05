@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS `tache` (
 CREATE TABLE IF NOT EXISTS `liste` (
     `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `titre` varchar(150) NOT NULL,
-    `status` char(8) DEFAULT NULL
+    `status` char(8) DEFAULT NULL,
+    `idParent` char(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
