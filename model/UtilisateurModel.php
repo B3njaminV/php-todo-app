@@ -19,7 +19,8 @@ class UtilisateurModel{
     }
 
     public function isUser() {
-        if(isset($_SESSION['role'])) {
+        if(isset($_SESSION['role']) && $_SESSION['role'] == "user") {
+            $role = $_SESSION['role'];
             return 1;
         } else {
             return NULL;

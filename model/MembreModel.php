@@ -30,7 +30,7 @@ class MembreModel{
     }
 
     public function isMembre() {
-        if(isset($_SESSION['role']) && isset($_SESSION['id'])) {
+        if(isset($_SESSION['role']) && $_SESSION['role'] == "membre") {
             $role = $_SESSION['role'];
             $id = $_SESSION['id'];
             return 1;
