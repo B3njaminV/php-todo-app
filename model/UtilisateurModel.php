@@ -14,6 +14,24 @@ class UtilisateurModel{
         $this->gatewayTache=new TacheGateway();
     }
 
+    public function connexion() {
+        $_SESSION['role'] = "user";
+    }
+
+    public function isUser() {
+        if(isset($_SESSION['role'])) {
+            return 1;
+        } else {
+            return NULL;
+        }
+    }
+
+    public function deconnexion() {
+        $_SESSION = array();
+        session_unset();
+        session_destroy();
+    }
+
     public function affichage_liste_public(){
         $tab2=$this->gatewayListe->findAllPublicList();
         return $tab2;
