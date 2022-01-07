@@ -28,11 +28,9 @@
 
 ## 🤝 Base de donnée SQL
 
-  Vous pourrez trouver notre Base de Donnée dans le fichier `localhost.sql` et l'importer sur votre prore Base de donnée
-    
+Vous pourrez trouver notre Base de Donnée dans le fichier `localhost.sql` et l'importer sur votre prore Base de donnée
 
-
-
+- N'oubliez pas de changer les valeurs de `$user` `$pass` dans `Connection.php`avant de vous connecter à la base de donnée 
 
 ## 📝 License
 
