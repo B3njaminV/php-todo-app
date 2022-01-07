@@ -5,7 +5,7 @@
 ### 🏠 [Homepage](https://github.com/Benjamin158/php-todo-app)
 
 
-## Prérequis
+## 📍 Prérequis
 
 - PHP 7.0~8.1
 - Apache 2
@@ -14,7 +14,7 @@
 - Serveur Web
 
 
-## Auteur
+## ⚙ Auteur
 
 👤 **VALLEIX Benjamin**
 
