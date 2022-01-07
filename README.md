@@ -14,7 +14,7 @@
 - Serveur Web
 
 
-## ⚙ Auteur
+## ✏️ Auteur
 
 👤 **VALLEIX Benjamin**
 
