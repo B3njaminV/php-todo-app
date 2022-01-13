@@ -18,7 +18,7 @@
 
 👤 **VALLEIX Benjamin**
 
-* Github: [@Benjamin158](https://github.com/Benjamin158)
+* Github: [@B3njaminV](https://github.com/B3njaminV)
 * LinkedIn: [@Benjamin VALLEIX](https://www.linkedin.com/in/benjamin-valleix-27115719a)
 
 👤 **MARTIN Vincent**
