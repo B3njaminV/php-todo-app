@@ -4,6 +4,7 @@
 
 ### 🏠 [Homepage](https://github.com/Benjamin158/php-todo-app)
 
+![img](./img/todolist.png)
 
 ## 📍 Prérequis
 
